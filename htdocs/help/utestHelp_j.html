@@ -1,0 +1,609 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!--
+//*****************************************************************************
+//*                                                                           *
+//* File name: utestHelp_j.html                                               *
+//* html for help of Mann-Whitney U-test Japanese version                     *
+//* Author: Yuichi Kumaki (yuichi@kumaki.jp)                                  *
+//* Copyright (C) 2008-2019 Yuichi Kumaki                                     *
+//*                                                                           *
+//* 2008/04/25 First open source version                                      *
+//*                                                                           *
+//*****************************************************************************
+//*                                                                           *
+//* This program is free software: you can redistribute it and/or modify      *
+//* it under the terms of the GNU General Public License as published by      *
+//* the Free Software Foundation, either version 3 of the License, or         *
+//* (at your option) any later version.                                       *
+//*                                                                           *
+//* This program is distributed in the hope that it will be useful,           *
+//* but WITHOUT ANY WARRANTY; without even the implied warranty of            *
+//* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the             *
+//* GNU General Public License for more details.                              *
+//*                                                                           *
+//* You should have received a copy of the GNU General Public License         *
+//* along with this program.  If not, see http://www.gnu.org/licenses/.       *
+//*                                                                           *
+//*****************************************************************************
+-->
+<HTML lang="ja">
+ <HEAD>
+  <META HTTP-EQUIV="Content-Type" content="text/html; charset=UTF-8">
+  <META HTTP-EQUIV="Content-Script-Type" content="text/javascript">
+  <META HTTP-EQUIV="Content-Style-Type" content="text/css">
+  <LINK REV="MADE" HREF="mailto:yuichi@kumaki.jp">
+  <LINK REL="INDEX" HREF="../top/index.html">
+  <TITLE>マン・ホイットニーのU検定</TITLE>
+ </HEAD>
+ <BODY style="background-color:#FFFFFF">
+  <TABLE align="center" border="0" cellspacing="0" cellpadding="0" summary="title table">
+   <TR style="background-color:#3333CC">
+    <TD><IMG src="../images/spacer.gif" width="250" height="3" alt="space"></TD>
+   </TR>
+   <TR>
+    <TD align="center" style="color:#333399;font-size:large;font-weight:bold;font-style:italic">
+     マン・ホイットニーのU検定
+    </TD>
+   </TR>
+   <TR style="background-color:#3333CC">
+    <TD><IMG src="../images/spacer.gif" width="250" height="3" alt="space"></TD>
+   </TR>
+  </TABLE>
+  <DIV STYLE="text-align:right">
+   <A HREF="../top/index_j.html" target="_top"><IMG border="0" src="../images/home.gif" alt="QUMA (QUantification tool for Methylation Analysis) top"></A>
+   <IMG src="../images/spacer.gif" alt="spacer" width="5" height="1">
+   <A HREF="javascript:window.close();void(0);"><IMG SRC="../images/iconClose.gif" ALT="close" border="0"></A></DIV>
+  <TABLE ALIGN="center" border="0" cellspacing="0" cellpadding="3" summary="example table" width="550">
+   <TR style="background-color:#EAEAFF">
+    <TD style="font-weight:bold">二つのバイサルファイト配列のグループについて、全てのCpGサイトを含んだ形で、
+     統計的な有意差があるかどうかについては
+     <A style="font-weight:bold" HREF="http://ja.wikipedia.org/wiki/%E3%83%9E%E3%83%B3%E3%83%BB%E3%83%9B%E3%82%A4%E3%83%83%E3%83%88%E3%83%8B%E3%83%BC%E3%81%AEU%E6%A4%9C%E5%AE%9A" target="_blank">マン・ホイットニーのU検定</A>
+     を用いてP値を求めています。マン・ホイットニーのU検定は、ウィルコクソンの順位和検定とも呼ばれ、
+     2群の分布したデータ間に統計的な有意差があるかどうか調べるのに用いられるノンパラメトリックな統計手法です。
+     マン・ホイットニーのU検定はスチューデントのt検定と同様の状況で用いられますが、特にCpGメチル化の解析でのhyperまたはhypoメチル化の場合のように、
+     分布が明らかに正規分布から外れるような場合には、パラメトリックな方法であるスチューデントのt検定よりも、
+     ノンパラメトリックな方法であるマン・ホイットニーのU検定の方が適していると思われます。
+     マン・ホイットニーのU検定における両側検定のP値は、各バイサルファイト配列でのメチル化率
+     （配列中の全てのCpGに対するメチル化されたCpGの割合）についての順位から求めます（下記参照）。
+     このP値は、バイサルファイト配列の2つのグループ間での、メチル化率の分布が独立しているか（違いがあるか）を示します。<BR>
+     重要な点として、マン・ホイットニーのU検定は、2つのグループそれぞれのメチル化率の平均値に違いがあるかどうかを検定する方法であるため、
+     インプリンティング領域のCpGのメチル化のようなアレル特異的なメチル化については検定できません。
+     具体的には、(1)ランダムな50%のメチル化、(2)0%メチル化のアレルと100%メチル化のアレルが半分ずつ、の2群を区別できません。
+     また、メチル化率から求めていますので、メチル化のパターンの違いは考慮されません。</TD>
+   </TR>
+   <TR style="background-color:#DDDDEE">
+    <TD>&nbsp;<IMG width="10" height="10" src="../images/icon034.gif" alt="list">
+        &nbsp;<A style="font-weight:bold">例</A></TD>
+   </TR>
+   <TR style="background-color:#EEEEFA">
+    <TD>
+     以下のサンプルデータセット（QUMAのサンプル配列の解析結果）について
+    </TD>
+   </TR>
+   <TR style="background-color:#EEEEFA">
+    <TD><TABLE ALIGN="left" border="1" cellspacing="0" cellpadding="3" summary="example1" style="font-size:small">
+     <TR>
+      <TH></TH>
+      <TH>各配列についての メチル化CpG/全CpG<BR><A style="font-size:x-small">(メチル化CpGの数 / CpGの数)</A></TH>
+      <TH>メチル化率の平均値</TH>
+      <TH>配列数</TH>
+     </TR>
+     <TR>
+      <TH>グループ1</TH>
+      <TD style="font-size:x-small" nowrap>6/19, 6/19, 8/19, 9/19 12/19, 15/19, 16/19,<BR>18/19, 18/19, 18/19, 18/18, 19/19, 19/19</TD>
+      <TD align="right">0.7409</TD>
+      <TD align="right">13 (= n<sub>1</sub>)</TD>
+     </TR>
+     <TR>
+      <TH>グループ2</TH>
+      <TD style="font-size:x-small" nowrap>2/19, 2/19, 3/19, 3/19 5/19, 5/19,<BR>7/19, 7/19, 7/19, 8/19</TD>
+      <TD align="right">0.2579</TD>
+      <TD align="right">10 (= n<sub>2</sub>)</TD>
+     </TR>
+    </TABLE></TD>
+   </TR>
+   <TR style="background-color:#EEEEFA">
+    <TD>
+     メチル化率の平均値、0.7409と0.2579の違いが有意かどうかを調べます。
+    </TD>
+   </TR>
+   <TR style="background-color:#DDDDEE">
+    <TD>
+    最初に、値（この場合メチル化率）の順位を決めます。もし同順位が複数ある場合は、順位の平均値を用います。
+    たとえば、このサンプルデータでは二つの配列でメチル化率が3/19で順位が3位と4位ですが、この場合は、
+    平均値の3.5を両方の配列の順位として用います。<BR>
+    次に、それぞれのグループの順位和、R<sub>1</sub>とR<sub>2</sub>を求めます。
+    </TD>
+   </TR>
+   <TR style="background-color:#DDDDEE">
+    <TD><TABLE ALIGN="left" border="1" cellspacing="0" cellpadding="3" summary="example" style="font-size:small">
+     <TR>
+      <TH colspan ="2">位置 i</TH>
+      <TD align="right">1</TD>
+      <TD align="right">2</TD>
+      <TD align="right">3</TD>
+      <TD align="right">4</TD>
+      <TD align="right">5</TD>
+      <TD align="right">6</TD>
+      <TD align="right">7</TD>
+      <TD align="right">8</TD>
+      <TD align="right">9</TD>
+      <TD align="right">10</TD>
+      <TD align="right">11</TD>
+      <TD align="right">12</TD>
+      <TH rowspan="4">順位和</TH>
+     </TR>
+     <TR>
+      <TH colspan ="2">メチル化CpG/全CpG</TH>
+      <TD align="right">2/19</TD>
+      <TD align="right">3/19</TD>
+      <TD align="right">5/19</TD>
+      <TD align="right">6/19</TD>
+      <TD align="right">7/19</TD>
+      <TD align="right">8/19</TD>
+      <TD align="right">9/19</TD>
+      <TD align="right">12/19</TD>
+      <TD align="right">15/19</TD>
+      <TD align="right">16/19</TD>
+      <TD align="right">18/19</TD>
+      <TD align="right">1</TD>
+     </TR>
+     <TR>
+      <TH colspan="2">順位</TH>
+      <TD align="right">1,2</TD>
+      <TD align="right">3,4</TD>
+      <TD align="right">5,6</TD>
+      <TD align="right">7,8</TD>
+      <TD align="right">9-11</TD>
+      <TD align="right">12,13</TD>
+      <TD align="right">14</TD>
+      <TD align="right">15</TD>
+      <TD align="right">16</TD>
+      <TD align="right">17</TD>
+      <TD align="right">18-20</TD>
+      <TD align="right">21-23</TD>
+     </TR>
+     <TR>
+      <TH colspan="2">順位 (平均)</TH>
+      <TD align="right">1.5</TD>
+      <TD align="right">3.5</TD>
+      <TD align="right">5.5</TD>
+      <TD align="right">7.5</TD>
+      <TD align="right">10</TD>
+      <TD align="right">12.5</TD>
+      <TD align="right">14</TD>
+      <TD align="right">15</TD>
+      <TD align="right">16</TD>
+      <TD align="right">17</TD>
+      <TD align="right">19</TD>
+      <TD align="right">22</TD>
+     </TR>
+     <TR>
+      <TH rowspan="3">配列数</TH>
+      <TH>グループ1</TH>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">2</TD>
+      <TD align="right">0</TD>
+      <TD align="right">1</TD>
+      <TD align="right">1</TD>
+      <TD align="right">1</TD>
+      <TD align="right">1</TD>
+      <TD align="right">1</TD>
+      <TD align="right">3</TD>
+      <TD align="right">3</TD>
+      <TD align="right" nowrap>212.5<BR>(= R<sub>1</sub>)</TD>
+     </TR>
+     <TR>
+      <TH>グループ2</TH>
+      <TD align="right">2</TD>
+      <TD align="right">2</TD>
+      <TD align="right">2</TD>
+      <TD align="right">0</TD>
+      <TD align="right">3</TD>
+      <TD align="right">1</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">63.5<BR>(= R<sub>2</sub>)</TD>
+     </TR>
+     <TR>
+      <TH>計</TH>
+      <TD align="right">2</TD>
+      <TD align="right">2</TD>
+      <TD align="right">2</TD>
+      <TD align="right">2</TD>
+      <TD align="right">3</TD>
+      <TD align="right">2</TD>
+      <TD align="right">1</TD>
+      <TD align="right">1</TD>
+      <TD align="right">1</TD>
+      <TD align="right">1</TD>
+      <TD align="right">3</TD>
+      <TD align="right">3</TD>
+      <TD></TD>
+     </TR>
+    </TABLE></TD>
+   </TR>
+   <TR style="background-color:#EEEEFA">
+    <TD>
+     そして、それぞれのグループごとのU値であるU1とU2を下記の式から求めます。<BR>
+     U1 = n<sub>1</sub> * n<sub>2</sub> + n<sub>1</sub> * (n<sub>1</sub> + 1) / 2 - R<sub>1</sub> = 8.5<BR>
+     U2 = n<sub>1</sub> * n<sub>2</sub> + n<sub>2</sub> * (n<sub>2</sub> + 1) / 2 - R<sub>2</sub> = 121.5<BR>
+     U1とU2のうち、より小さい値をUとして採用します。このデータではU = 8.5となります。<BR>
+     最後に、両側検定のP値をU値から求めます。配列数が多い場合（20配列以上）は、正規分布による近似を用いてP値を求めています。
+     配列数が少ない場合（20配列以下）は、直接計算により正確な確率を求めています（マン・ホイットニーの正確確率U検定）。
+    </TD>
+   </TR>
+   <TR style="background-color:#DDDDEE">
+    <TD>
+     正規分布による近似は以下のように行っています。<BR>
+     <IMG SRC="../images/image001.png" ALT="fomula1" border="0"><BR>
+     ここで、zは標準正規分布に従うとしています。E(U)はU値の平均値、V(U)はU値の分散で、以下のように求めます。<BR>
+     <IMG SRC="../images/image003.png" ALT="fomula2" border="0"><BR>
+     <IMG SRC="../images/image005.png" ALT="fomula3" border="0"><BR>
+     ここで、t<sub>i</sub>は位置iにおける配列数（同順位の配列の数）です。<BR>
+     このサンプルデータではE(U) = 65, V(U) = 257.812, z = 3.51879となります。そして標準正規分布の統計表から、両側検定のP値は0.0004となります
+     （両側検定では統計表から求めた上側確率の２倍）。
+    </TD>
+   </TR>
+   <TR style="background-color:#EEEEFA">
+    <TD>
+     別のサンプルデータ（配列数11）について、マン・ホイットニーの正確確率U検定でP値を求めます。
+    </TD>
+   </TR>
+   <TR style="background-color:#EEEEFA">
+    <TD>
+     表1
+    </TD>
+   </TR>
+   <TR style="background-color:#EEEEFA">
+    <TD><TABLE ALIGN="left" border="1" cellspacing="0" cellpadding="3" summary="example1" style="font-size:small">
+     <TR>
+      <TH></TH>
+      <TH>各配列についての メチル化CpG/全CpG<BR><A style="font-size:x-small">(メチル化CpGの数 / CpGの数)</A></TH>
+      <TH>メチル化率の平均値</TH>
+      <TH>配列数</TH>
+     </TR>
+     <TR>
+      <TH>グループ1</TH>
+      <TD style="font-size:x-small" nowrap>6/19, 6/19, 9/19 12/19, 15/19, 18/19</TD>
+      <TD align="right">0.5789</TD>
+      <TD align="right">6 (= n<sub>1</sub>)</TD>
+     </TR>
+     <TR>
+      <TH>グループ2</TH>
+      <TD style="font-size:x-small" nowrap>3/19, 5/19, 5/19, 7/19, 7/19</TD>
+      <TD align="right">0.2842</TD>
+      <TD align="right">5 (= n<sub>2</sub>)</TD>
+     </TR>
+    </TABLE></TD>
+   </TR>
+   <TR style="background-color:#DDDDEE">
+    <TD>
+     Table2
+    </TD>
+   </TR>
+   <TR style="background-color:#DDDDEE">
+    <TD><TABLE ALIGN="left" border="1" cellspacing="0" cellpadding="3" summary="example" style="font-size:small">
+     <TR>
+      <TH colspan ="2">位置 i</TH>
+      <TD align="right">1</TD>
+      <TD align="right">2</TD>
+      <TD align="right">3</TD>
+      <TD align="right">4</TD>
+      <TD align="right">5</TD>
+      <TD align="right">6</TD>
+      <TD align="right">7</TD>
+      <TD align="right">8</TD>
+      <TH rowspan="4">配列数</TH>
+      <TH rowspan="4">順位和</TH>
+     </TR>
+     <TR>
+      <TH colspan ="2">メチル化CpG/全CpG</TH>
+      <TD align="right">3/19</TD>
+      <TD align="right">5/19</TD>
+      <TD align="right">6/19</TD>
+      <TD align="right">7/19</TD>
+      <TD align="right">9/19</TD>
+      <TD align="right">12/19</TD>
+      <TD align="right">15/19</TD>
+      <TD align="right">18/19</TD>
+     </TR>
+     <TR>
+      <TH colspan="2">順位</TH>
+      <TD align="right">1</TD>
+      <TD align="right">2,3</TD>
+      <TD align="right">4,5</TD>
+      <TD align="right">6,7</TD>
+      <TD align="right">8</TD>
+      <TD align="right">9</TD>
+      <TD align="right">10</TD>
+      <TD align="right">11</TD>
+     </TR>
+     <TR>
+      <TH colspan="2">順位 (平均)</TH>
+      <TD align="right">1</TD>
+      <TD align="right">2.5</TD>
+      <TD align="right">4.5</TD>
+      <TD align="right">6.5</TD>
+      <TD align="right">8</TD>
+      <TD align="right">9</TD>
+      <TD align="right">10</TD>
+      <TD align="right">11</TD>
+     </TR>
+     <TR>
+      <TH rowspan="3">配列数</TH>
+      <TH>グループ1</TH>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">2</TD>
+      <TD align="right">0</TD>
+      <TD align="right">1</TD>
+      <TD align="right">1</TD>
+      <TD align="right">1</TD>
+      <TD align="right">1</TD>
+      <TD align="right">6</TD>
+      <TD align="right" nowrap>47 (= R<sub>1</sub>)</TD>
+     </TR>
+     <TR>
+      <TH>グループ2</TH>
+      <TD align="right">1</TD>
+      <TD align="right">2</TD>
+      <TD align="right">0</TD>
+      <TD align="right">2</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">5</TD>
+      <TD align="right">19 (= R<sub>2</sub>)</TD>
+     </TR>
+     <TR>
+      <TH>計</TH>
+      <TD align="right">1</TD>
+      <TD align="right">2</TD>
+      <TD align="right">2</TD>
+      <TD align="right">2</TD>
+      <TD align="right">1</TD>
+      <TD align="right">1</TD>
+      <TD align="right">1</TD>
+      <TD align="right">1</TD>
+      <TD align="right">11</TD>
+      <TD></TD>
+     </TR>
+    </TABLE></TD>
+   </TR>
+   <TR style="background-color:#DDDDEE">
+    <TD>
+     U1 = n<sub>1</sub> * n<sub>2</sub> + n<sub>1</sub> * (n<sub>1</sub> + 1) / 2 - R<sub>1</sub> = 4<BR>
+     U2 = n<sub>1</sub> * n<sub>2</sub> + n<sub>2</sub> * (n<sub>2</sub> + 1) / 2 - R<sub>2</sub> = 26<BR>
+     U = min (U1, U2) = 4<BR>
+    </TD>
+   </TR>
+   <TR style="background-color:#EEEEFA">
+    <TD>
+     周辺度数（各グループの配列数6と5、及び、各メチル率についての配列数1, 2, 2, 2, 1, 1, 1, 1）を固定した場合、176の組み合わせがあり、そのうち、
+     U値がサンプルデータでのU値である4以下の11通りの組み合わせは以下のようになります。
+    </TD>
+   </TR>
+   <TR style="background-color:#EEEEFA">
+    <TD><TABLE ALIGN="left" border="1" cellspacing="0" cellpadding="3" summary="example" style="font-size:small">
+     <TR>
+      <TH>位置 i</TH>
+      <TD align="right">1</TD>
+      <TD align="right">2</TD>
+      <TD align="right">3</TD>
+      <TD align="right">4</TD>
+      <TD align="right">5</TD>
+      <TD align="right">6</TD>
+      <TD align="right">7</TD>
+      <TD align="right">8</TD>
+      <TH rowspan="4">順位和</TH>
+      <TH rowspan="4">U値</TH>
+      <TH rowspan="4">確率</TH>
+     </TR>
+     <TR>
+      <TH>メチル化CpG/<BR>全CpG</TH>
+      <TD align="right">3/19</TD>
+      <TD align="right">5/19</TD>
+      <TD align="right">6/19</TD>
+      <TD align="right">7/19</TD>
+      <TD align="right">9/19</TD>
+      <TD align="right">12/19</TD>
+      <TD align="right">15/19</TD>
+      <TD align="right">18/19</TD>
+     </TR>
+     <TR>
+      <TH>順位</TH>
+      <TD align="right">1</TD>
+      <TD align="right">2,3</TD>
+      <TD align="right">4,5</TD>
+      <TD align="right">6,7</TD>
+      <TD align="right">8</TD>
+      <TD align="right">9</TD>
+      <TD align="right">10</TD>
+      <TD align="right">11</TD>
+     </TR>
+     <TR>
+      <TH>順位 (平均)</TH>
+      <TD align="right">1</TD>
+      <TD align="right">2.5</TD>
+      <TD align="right">4.5</TD>
+      <TD align="right">6.5</TD>
+      <TD align="right">8</TD>
+      <TD align="right">9</TD>
+      <TD align="right">10</TD>
+      <TD align="right">11</TD>
+     </TR>
+     <TR>
+      <TH>グループ1/<BR>グループ2</TH>
+      <TD align="right">1/0</TD>
+      <TD align="right">2/0</TD>
+      <TD align="right">2/0</TD>
+      <TD align="right">1/1</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">21.5/44.5</TD>
+      <TD align="right">0.5</TD>
+      <TD align="right">0.00433</TD>
+     </TR>
+     <TR>
+      <TH>グループ1/<BR>グループ2</TH>
+      <TD align="right">1/0</TD>
+      <TD align="right">2/0</TD>
+      <TD align="right">2/0</TD>
+      <TD align="right">0/2</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">23/43</TD>
+      <TD align="right">2</TD>
+      <TD align="right">0.00216</TD>
+     </TR>
+     <TR>
+      <TH>グループ1/<BR>グループ2</TH>
+      <TD align="right">1/0</TD>
+      <TD align="right">2/0</TD>
+      <TD align="right">2/0</TD>
+      <TD align="right">0/2</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">24/42</TD>
+      <TD align="right">3</TD>
+      <TD align="right">0.00216</TD>
+     </TR>
+     <TR>
+      <TH>グループ1/<BR>グループ2</TH>
+      <TD align="right">1/0</TD>
+      <TD align="right">2/0</TD>
+      <TD align="right">2/0</TD>
+      <TD align="right">0/2</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">25/41</TD>
+      <TD align="right">4</TD>
+      <TD align="right">0.00216</TD>
+     </TR>
+     <TR>
+      <TH>グループ1/<BR>グループ2</TH>
+      <TD align="right">1/0</TD>
+      <TD align="right">2/0</TD>
+      <TD align="right">1/1</TD>
+      <TD align="right">2/0</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">23.5/42.5</TD>
+      <TD align="right">2.5</TD>
+      <TD align="right">0.00433</TD>
+     </TR>
+     <TR>
+      <TH>グループ1/<BR>グループ2</TH>
+      <TD align="right">1/0</TD>
+      <TD align="right">2/0</TD>
+      <TD align="right">1/1</TD>
+      <TD align="right">1/1</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">25/41</TD>
+      <TD align="right">4</TD>
+      <TD align="right">0.00866</TD>
+     </TR>
+     <TR>
+      <TH>グループ1/<BR>グループ2</TH>
+      <TD align="right">0/1</TD>
+      <TD align="right">1/1</TD>
+      <TD align="right">0/2</TD>
+      <TD align="right">1/1</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">47/19</TD>
+      <TD align="right">4</TD>
+      <TD align="right">0.00866</TD>
+     </TR>
+     <TR style="color:magenta">
+      <TH>グループ1/<BR>グループ2</TH>
+      <TD align="right">0/1</TD>
+      <TD align="right">0/2</TD>
+      <TD align="right">2/0</TD>
+      <TD align="right">0/2</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">47/19</TD>
+      <TD align="right">4</TD>
+      <TD align="right">0.00216</TD>
+     </TR>
+     <TR>
+      <TH>グループ1/<BR>グループ2</TH>
+      <TD align="right">0/1</TD>
+      <TD align="right">0/2</TD>
+      <TD align="right">1/1</TD>
+      <TD align="right">2/0</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">47.5/18.5</TD>
+      <TD align="right">3.5</TD>
+      <TD align="right">0.00433</TD>
+     </TR>
+     <TR>
+      <TH>グループ1/<BR>グループ2</TH>
+      <TD align="right">0/1</TD>
+      <TD align="right">0/2</TD>
+      <TD align="right">1/1</TD>
+      <TD align="right">1/1</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">49/17</TD>
+      <TD align="right">2</TD>
+      <TD align="right">0.00866</TD>
+     </TR>
+     <TR>
+      <TH>グループ1/<BR>グループ2</TH>
+      <TD align="right">0/1</TD>
+      <TD align="right">0/2</TD>
+      <TD align="right">0/2</TD>
+      <TD align="right">2/0</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">51/15</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0.00216</TD>
+     </TR>
+    </TABLE></TD>
+   </TR>
+   <TR style="background-color:#EEEEFA">
+    <TD>両側検定のP値を求めるには、これらの11の組み合わせそれぞれの確率の合計値を求めます。このサンプルでは、両側検定のP値は0.0498となります。
+    </TD>
+   </TR>
+  </TABLE>
+  <DIV STYLE="text-align:right">
+   <A HREF="../top/index_j.html" target="_top"><IMG border="0" src="../images/home.gif" alt="QUMA (QUantification tool for Methylation Analysis) top"></A>
+   <IMG src="../images/spacer.gif" alt="spacer" width="5" height="1">
+   <A HREF="javascript:window.close();void(0);"><IMG SRC="../images/iconClose.gif" ALT="close" border="0"></A></DIV>
+ </BODY>
+</HTML>

@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!--
+//*****************************************************************************
+//*                                                                           *
+//* File name: multiAliHelpC.html                                             *
+//* html for help of multiple alignment  (CpG check version)                  *
+//* Author: Yuichi Kumaki (yuichi@kumaki.jp)                                  *
+//* Copyright (C) 2008-2019 Yuichi Kumaki                                     *
+//*                                                                           *
+//* 2011/01/28 First open source version                                      *
+//*                                                                           *
+//*****************************************************************************
+//*                                                                           *
+//* This program is free software: you can redistribute it and/or modify      *
+//* it under the terms of the GNU General Public License as published by      *
+//* the Free Software Foundation, either version 3 of the License, or         *
+//* (at your option) any later version.                                       *
+//*                                                                           *
+//* This program is distributed in the hope that it will be useful,           *
+//* but WITHOUT ANY WARRANTY; without even the implied warranty of            *
+//* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the             *
+//* GNU General Public License for more details.                              *
+//*                                                                           *
+//* You should have received a copy of the GNU General Public License         *
+//* along with this program.  If not, see http://www.gnu.org/licenses/.       *
+//*                                                                           *
+//*****************************************************************************
+-->
+<HTML lang="en">
+ <HEAD>
+  <META HTTP-EQUIV="Content-Type" content="text/html; charset=ISO-8859-1">
+  <META HTTP-EQUIV="Content-Script-Type" content="text/javascript">
+  <META HTTP-EQUIV="Content-Style-Type" content="text/css">
+  <LINK REV="MADE" HREF="mailto:yuichi@kumaki.jp">
+  <LINK REL="INDEX" HREF="../top/index.html">
+  <TITLE>Multiple alignment Help</TITLE>
+ </HEAD>
+ <BODY style="background-color:#FFFFFF">
+  <TABLE ALIGN="center" border="0" cellspacing="0" cellpadding="0" summary="title table">
+   <TR style="background-color:#3333CC">
+    <TD><IMG src="../images/spacer.gif" width="250" height="3" alt="space"></TD>
+   </TR>
+   <TR>
+    <TD align="center" style="color:#333399;font-size:large;font-weight:bold;font-style:italic">
+    Multiple alignment Help
+    </TD>
+   </TR>
+   <TR style="background-color:#3333CC">
+    <TD><IMG src="../images/spacer.gif" width="250" height="3" alt="space"></TD>
+   </TR>
+  </TABLE>
+
+  <DIV STYLE="text-align:right">
+   <A HREF="../top/index.html" target="_top"><IMG border="0" src="../images/home.gif" alt="QUMA (QUantification tool for Methylation Analysis) top"></A>
+   <IMG src="../images/spacer.gif" alt="spacer" width="5" height="1">
+   <A HREF="javascript:window.close();void(0);"><IMG SRC="../images/iconClose.gif" ALT="close" border="0"></A></DIV>
+  <TABLE ALIGN="center" border="0" cellspacing="0" cellpadding="0" summary="overall table" width="600">
+   <TR>
+    <TD valign="top"><TABLE border="0" cellspacing="0" cellpadding="2" summary="example table" width="330" style="background-color:#E1E1F1">
+     <TR>
+      <TD colspan="2" style="font-weight:bold" align="left">
+         <IMG width="10" height="10" src="../images/icon034.gif" alt="list">
+         Download Format
+      </TD>
+     </TR>
+     <TR>
+      <TD colspan="2"><IMG src="../images/spacer.gif" width="10" height="1" alt="space"></TD>
+     </TR>
+     <TR>
+      <TD colspan="2" style="font-weight:bold">Plain text (.txt)</TD>
+     </TR>
+     <TR>
+      <TD><IMG src="../images/spacer.gif" width="5" height="1" alt="space"></TD>
+      <TD>Human readable text format.</TD>
+     </TR>
+     <TR>
+      <TD colspan="2"><IMG src="../images/spacer.gif" width="10" height="1" alt="space"></TD>
+     </TR>
+     <TR>
+      <TD colspan="2" style="font-weight:bold">Multi-FASTA (.fa)</TD>
+     </TR>
+     <TR>
+      <TD><IMG src="../images/spacer.gif" width="5" height="1" alt="space"></TD>
+      <TD><A HREF="javascript:window.open('../help/multiFastaHelp.html','format','width=600,height=420,resizable,scrollbars').focus();void(0);">Multi-FASTA</A>
+       format file can be used as an input file of other programs (such as <A HREF="http://www.gmi.oeaw.ac.at/CyMATE" target="_blank">CyMATE</A>: useful tool for both CpG and non-CpG methylation analysis).</TD>
+     </TR>
+     <TR>
+      <TD colspan="2"><IMG src="../images/spacer.gif" width="10" height="1" alt="space"></TD>
+     </TR>
+     <TR>
+      <TD colspan="2" style="font-weight:bold">Tab separate values (.tsv)</TD>
+     </TR>
+     <TR>
+      <TD colspan="2" style="font-weight:bold">Comma separated values (.csv)</TD>
+     </TR>
+     <TR>
+      <TD><IMG src="../images/spacer.gif" width="5" height="1" alt="space"></TD>
+      <TD>These formats can be opened by spreadsheet softwares.</TD>
+     </TR>
+    </TABLE></TD>
+    <TD><IMG src="../images/spacer.gif" width="5" height="1" alt="space"></TD>
+    <TD valign="top"><TABLE border="0" cellspacing="0" cellpadding="2" summary="example table" width="250" style="background-color:#EAEAFA">
+     <TR>
+      <TD colspan="2" style="font-weight:bold" align="left">
+         <IMG width="10" height="10" src="../images/icon034.gif" alt="list">
+         Example
+      </TD>
+     </TR>
+     <TR>
+      <TD colspan="2"><IMG src="../images/spacer.gif" width="10" height="1" alt="space"></TD>
+     </TR>
+     <TR>
+      <TD ALIGN="center" VALIGN="middle"><A STYLE="COLOR:#FF00FF">C</A></TD>
+      <TD VALIGN="middle"><A STYLE="COLOR:#FF00FF">Methylated C of CpG site</A></TD>
+     </TR>
+     <TR>
+      <TD colspan="2"><IMG src="../images/spacer.gif" width="10" height="1" alt="space"></TD>
+     </TR>
+     <TR>
+      <TD ALIGN="center" VALIGN="middle"><A STYLE="COLOR:#0000FF">T</A></TD>
+      <TD VALIGN="middle"><A STYLE="COLOR:#0000FF">Unmethylated C of CpG site</A></TD>
+     </TR>
+     <TR>
+      <TD colspan="2"><IMG src="../images/spacer.gif" width="10" height="1" alt="space"></TD>
+     </TR>
+     <TR>
+      <TD ALIGN="center" VALIGN="middle"><A STYLE="COLOR:#FF9955">C</A></TD>
+      <TD VALIGN="middle"><A STYLE="COLOR:#FF9955">Unconverted C of non CpG site</A></TD>
+     </TR>
+     <TR>
+      <TD colspan="2"><IMG src="../images/spacer.gif" width="10" height="1" alt="space"></TD>
+     </TR>
+     <TR>
+      <TD ALIGN="center" VALIGN="middle"><A STYLE="COLOR:#00FF00">T</A></TD>
+      <TD VALIGN="middle"><A STYLE="COLOR:#00FF00">Mismatch or gap</A></TD>
+     </TR>
+     <TR>
+      <TD ALIGN="center" VALIGN="middle"><A STYLE="COLOR:#00AA00">C</A></TD>
+      <TD VALIGN="middle"><A STYLE="COLOR:#00AA00">Not CpG site at<BR>this bisulfite sequnece</A></TD>
+     </TR>
+    </TABLE></TD>
+   </TR>
+  </TABLE>
+  <DIV STYLE="text-align:right">
+   <A HREF="../top/index.html" target="_top"><IMG border="0" src="../images/home.gif" alt="QUMA (QUantification tool for Methylation Analysis) top"></A>
+   <IMG src="../images/spacer.gif" alt="spacer" width="5" height="1">
+   <A HREF="javascript:window.close();void(0);"><IMG SRC="../images/iconClose.gif" ALT="close" border="0"></A></DIV>
+ </BODY>
+</HTML>

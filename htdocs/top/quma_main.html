@@ -1,0 +1,712 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!--
+//*****************************************************************************
+//*                                                                           *
+//* File name: quma_main.html                                                 *
+//* html for main contents of QUMA home page                                  *
+//* Author: Yuichi Kumaki (yuichi@kumaki.jp)                                  *
+//* Copyright (C) 2008-2019 Yuichi Kumaki                                     *
+//*                                                                           *
+//* 2008/02/20 First open source version                                      *
+//*                                                                           *
+//*****************************************************************************
+//*                                                                           *
+//* This program is free software: you can redistribute it and/or modify      *
+//* it under the terms of the GNU General Public License as published by      *
+//* the Free Software Foundation, either version 3 of the License, or         *
+//* (at your option) any later version.                                       *
+//*                                                                           *
+//* This program is distributed in the hope that it will be useful,           *
+//* but WITHOUT ANY WARRANTY; without even the implied warranty of            *
+//* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the             *
+//* GNU General Public License for more details.                              *
+//*                                                                           *
+//* You should have received a copy of the GNU General Public License         *
+//* along with this program.  If not, see http://www.gnu.org/licenses/.       *
+//*                                                                           *
+//*****************************************************************************
+-->
+<HTML lang="en">
+ <HEAD>
+  <META HTTP-EQUIV="Content-Type" content="text/html; charset=ISO-8859-1">
+  <META HTTP-EQUIV="Content-Script-Type" content="text/javascript">
+  <META HTTP-EQUIV="Content-Style-Type" content="text/css">
+  <LINK REV="MADE" HREF="mailto:yuichi@kumaki.jp">
+  <LINK REL="INDEX" HREF="index.html">
+  <TITLE>QUMA (QUantification tool for Methylation Analysis) home</TITLE>
+
+  <SCRIPT type="text/javascript" language="JavaScript">
+  <!--
+
+    var browser;
+
+    if (document.getElementById) {
+      browser = "IE56NN6";
+    } else if (document.all) {
+      browser = "IE46";
+    } else if (document.layers) {
+      browser = "NN4";
+    }
+
+    function checkShow () {
+        if (document.allform.optionShow.value == 1) {
+            document.allform.optionShow.value = "0";
+        } else {
+            document.allform.optionShow.value = "1";
+        }
+	foption ();
+    }
+
+    function foption() {
+       if (browser == "IE56NN6") {
+         optionAnc  = document.getElementById("textvalue");
+	 optionText = document.getElementById("textvalue").childNodes.item(0);
+	 optionAnc.removeChild(optionText);
+
+         if (document.allform.optionShow.value == 0) {
+	   document.getElementById("optionlist1").style.display = "block";
+           document.getElementById("helpLink1").style.display = "none";
+           document.getElementById("helpLink2").style.display = "none";
+	   document.getElementById("inputTab1").style.display = "block";
+	   document.getElementById("inputTab2").style.background = "#EEEEFF";
+           document.getElementById("inputTab3").style.display = "none";
+           document.getElementById("inputTab4").style.display = "block";
+	   document.getElementById("inputTab5").style.display = "block";
+	   document.getElementById("inputTab6").style.background = "#DDDDEE";
+           document.getElementById("inputTab7").style.display = "none";
+           document.getElementById("inputTab8").style.display = "block";
+           document.getElementById("inputTab9").style.display = "block";
+	   document.getElementById("optImage1").src = "../images/icon033.gif";
+	   newText = document.createTextNode("Hide options");
+           document.allform.optionShow.value = "1";
+
+         } else {
+           document.getElementById("optionlist1").style.display = "none";
+           document.getElementById("helpLink1").style.display = "inline";
+           document.getElementById("helpLink2").style.display = "inline";
+           document.getElementById("inputTab1").style.display = "none";
+	   document.getElementById("inputTab2").style.background = "#DDDDEE";
+           document.getElementById("inputTab3").style.display = "block";
+           document.getElementById("inputTab4").style.display = "none";
+           document.getElementById("inputTab5").style.display = "none";
+	   document.getElementById("inputTab6").style.background = "#EEEEFF";
+           document.getElementById("inputTab7").style.display = "block";
+           document.getElementById("inputTab8").style.display = "none";
+           document.getElementById("inputTab9").style.display = "none";
+	   document.getElementById("optImage1").src = "../images/icon030.gif";
+	   newText = document.createTextNode("Show options");
+           document.allform.optionShow.value = "0";
+	 }
+
+         optionAnc.appendChild(newText);
+
+       } else if (browser == "IE46") {
+         if (document.allform.optionShow.value == 0) {
+           optionlist1.style.display = "block";
+	   helpLink1.style.display = "none";
+	   helpLink2.style.display = "none";
+           inputTab1.style.display = "block";
+           inputTab2.style.background = "#EEEEFF";
+           inputTab3.style.display = "none";
+           inputTab4.style.display = "block";
+           inputTab5.style.display = "block";
+           inputTab6.style.background = "#DDDDEE";
+           inputTab7.style.display = "none";
+           inputTab8.style.display = "block";
+           inputTab9.style.display = "block";
+           document.images[61].src = "../images/icon033.gif";
+	   textvalue.innerText = "Hide options";
+           document.allform.optionShow.value = "1";
+
+         } else {
+           optionlist1.style.display= "none";
+	   helpLink1.style.display = "inline";
+	   helpLink2.style.display = "inline";
+           inputTab1.style.display = "none";
+           inputTab2.style.background = "#DDDDEE";
+           inputTab3.style.display = "block";
+           inputTab4.style.display = "none";
+           inputTab5.style.display = "none";
+           inputTab6.style.background = "#EEEEFF";
+           inputTab7.style.display = "block";
+           inputTab8.style.display = "none";
+           inputTab9.style.display = "none";
+           document.images[61].src = "../images/icon030.gif";
+	   textvalue.innerText = "Show options";
+           document.allform.optionShow.value = "0";
+         }
+       }
+    }
+
+    function checkQue () {
+        if (! document.allform.genomefile.value  &&
+	    ! document.allform.genome.value &&
+	    document.allform.sampleData.value == 0) {
+
+            if (document.allform.optionShow.value == 1) {
+	        alert ("Please select file of target genomic sequence or paste target genomic sequence!");
+		document.allform.genome.focus();
+            } else {
+	        alert ("Please select target genomic sequence file!");
+		document.allform.genomefile.focus();
+            }
+	    return false;
+        }
+
+        if (! document.allform.biseq1.value  &&
+	    ! document.allform.multifasta.value &&
+	    document.allform.sampleData.value == 0) {
+
+            if (document.allform.optionShow.value == 1) {
+	        alert ("Please select file of bisulfite sequences or paste bisulfite sequences!");
+		document.allform.multifasta.focus();
+            } else {
+	        alert ("Please select file of bisulfite sequences!");
+		document.allform.biseq1.focus();
+            }
+	    return false;
+        }
+
+	return true;
+    }
+
+    function checkRestore () {
+        if (document.restore.restorefile.value) {
+	    if (document.restore.restorefile.value.substr(document.restore.restorefile.value.length - 4, 4) == ".qma" ||
+		document.restore.restorefile.value.substr(document.restore.restorefile.value.length - 4, 4) == ".QMA") {
+		return true;
+            }
+
+	    alert ('The file name must have the suffix ".qma"!');
+	    document.restore.restorefile.focus();
+	    return false;
+        }
+
+	alert ('Please select QUMA restore file (.qma)!');
+	document.restore.restorefile.focus();
+	return false;
+    }
+
+    function exec_sample_data() {
+      if(confirm("Do you want to execute QUMA with sample sequence data?")) {
+         alert ("Click 'Submit' button!");
+         document.allform.sampleData.value = "1";
+         document.allform.allsub.focus();
+      } else {
+         document.allform.sampleData.value = "0";
+      }
+    }
+
+  //-->
+  </SCRIPT>
+  <SCRIPT language="JavaScript" type="text/javascript" src="../files/sample_data.js"></SCRIPT>
+ </HEAD>
+ <BODY style="background-color:#FFFFFF">
+  <DIV ALIGN="center">
+   <TABLE ALIGN="center" border="0" cellspacing="0" cellpadding="0" summary="title table">
+    <TR style="background-color:#3333CC">
+     <TD><A HREF="index.html" target="_top"><IMG border="0" src="../images/spacer.gif" width="800" height="5" alt="space"></A></TD>
+    </TR>
+    <TR>
+     <TD><A HREF="index.html" target="_top"><IMG border="0" src="../images/spacer.gif" width="800" height="8" alt="space"></A></TD>
+    </TR>
+    <TR>
+     <TD align="center"><A HREF="index.html" target="_top"><IMG border="0" src="../images/quma_title_5_779.gif" alt="QUMA: QUantification tool for Methylation Analysis"></A></TD>
+    </TR>
+    <TR style="background-color:#3333CC">
+     <TD><A HREF="index.html" target="_top"><IMG border="0" src="../images/spacer.gif" width="800" height="5" alt="space"></A></TD>
+    </TR>
+    <TR>
+     <TD style="font-size:150%;color:#000088;font-weight:bold">You can easily align, visualize and quantify<BR>bisulfite sequence data for CpG methylation analysis</TD>
+    </TR>
+   </TABLE>
+   <BR>
+   <FORM onSubmit="if(checkQue()){return true;}else{return false;}" ACTION="/cgi-bin/makeBisulfiteData.cgi" ENCTYPE="multipart/form-data"
+    METHOD="POST" target="downner" name="allform">
+   <INPUT TYPE="hidden" NAME="optionShow" VALUE="0">
+   <INPUT TYPE="hidden" NAME="sampleData" VALUE="0">
+   <TABLE ALIGN="center" border="0" cellspacing="0" cellpadding="0" summary="overall table" width="800">
+    <TR>
+     <TD><TABLE border="0" cellspacing="0" cellpadding="0" summary="show option table" width="100%">
+      <TR align="left" style="background-color:#EEEEFF">
+       <TD>&nbsp;<IMG width="13" height="13" src="../images/icon034.gif" alt="list">&nbsp;
+        <A HREF="overview.html" target="downner">Overview: how to use QUMA</A></TD>
+       <TD><IMG src="../images/spacer.gif" width="3" height="30" alt="space"></TD>
+       <TD>&nbsp;<IMG width="13" height="13" src="../images/icon034.gif" alt="list">&nbsp;
+        <A HREF="javascript:window.open('../help/quickStart.html','quickstart','width=600,height=600,resizable,scrollbars').focus();void(0);">Quick start</A></TD>
+       <TD><IMG src="../images/spacer.gif" width="3" height="30" alt="space"></TD>
+       <TD>&nbsp;<IMG width="13" height="13" src="../images/icon034.gif" alt="list">&nbsp;
+        <A HREF="javascript:exec_sample_data()">Execute with sample sequence data</A></TD>
+       <TD><IMG src="../images/spacer.gif" width="3" height="30" alt="space"></TD>
+       <TD>&nbsp;<IMG width="13" height="13" src="../images/icon034.gif" alt="list">&nbsp;
+        <A HREF="javascript:window.open('../help/sampleFile.html','sample','width=600,height=300,resizable,scrollbars').focus();void(0);">Sample sequence files</A></TD>
+      </TR>
+      <TR>
+       <TD colspan="7"><IMG src="../images/spacer.gif" width="800" height="1" alt="space"></TD>
+      </TR>
+     </TABLE></TD>
+    </TR>
+
+    <!-- Input table 1 project to genome text start -->
+    <TR>
+     <TD><TABLE id="inputTab1" style="display:none" border="0" cellspacing="0" cellpadding="0" summary="input table 1" width="100%">
+      <TR align="left"  style="background-color:#DDDDEE">
+       <TD colspan="2" valign="middle">&nbsp;<IMG width="13" height="13" src="../images/icon034.gif" alt="list">&nbsp;
+             Project name
+             (optional: only contain &quot;A-Z&quot;, &quot;a-z&quot;, &quot;0-9&quot;, &quot;_&quot; and &quot;-&quot;)
+            &nbsp;&nbsp;:&nbsp;&nbsp;<input type="text" NAME="project" SIZE="20" MAXLENGTH="32">
+            <IMG src="../images/spacer.gif" width="1" height="20" alt="space"></TD>
+       <TD width="14" align="right"><A HREF="javascript:window.open('../help/projectHelp.html','help','width=650,height=200,resizable,scrollbars').focus();void(0);"><IMG width="14" height="14" src="../images/help.gif" alt="help" border="0"></A></TD>
+      </TR>
+      <TR>
+       <TD colspan="3" height="2"><IMG src="../images/spacer.gif" width="1" height="2" alt="space"></TD>
+      </TR>
+      <TR align="left" style="background-color:#EEEEFF">
+       <TD width="25">&nbsp;<IMG width="13" height="13" src="../images/icon034.gif" alt="list">&nbsp;</TD>
+       <TD align="left" width="756">Enter a target genomic sequence (PCR target) in 
+        <A HREF="javascript:window.open('../help/plainSeqHelp.html','help','width=600,height=300,resizable,scrollbars').focus();void(0);">plain sequence</A>,
+        <A HREF="javascript:window.open('../help/fastaHelp.html','help','width=600,height=420,resizable,scrollbars').focus();void(0);">FASTA</A> or
+        <A HREF="javascript:window.open('../help/gbHelp.html','help','width=700,height=420,resizable,scrollbars').focus();void(0);">GenBank</A> format</TD>
+       <TD width="14" align="right"><A HREF="javascript:window.open('../help/upgenomeHelp2.html','help','width=700,height=420,resizable,scrollbars').focus();void(0);"><IMG width="14" height="14" src="../images/help.gif" alt="help" border="0"></A></TD>
+      </TR>
+      <TR align="left" style="background-color:#EEEEFF">
+       <TD></TD>
+       <TD colspan="2"><textarea ROWS="4" COLS="80" NAME="genome"></textarea></TD>
+      </TR>
+      <TR align="left" style="background-color:#EEEEFF">
+       <TD colspan="3"><IMG src="../images/spacer.gif" width="800" height="2" alt="space"></TD>
+      </TR>
+     </TABLE></TD>
+    </TR>
+    <!-- Input table 1 project to genome text end -->
+
+    <!-- Input table 2-4 genome up file start -->
+    <TR>
+     <TD><TABLE id="inputTab2" border="0" cellspacing="0" cellpadding="0" summary="input table 2" style="background-color:#DDDDEE" width="100%">
+      <TR>
+       <TD><TABLE id="inputTab3" style="display:block" border="0" cellspacing="0" cellpadding="0" summary="simple input table 2">
+        <TR align="left" style="background-color:#DDDDEE">
+         <TD width="25">&nbsp;<IMG width="13" height="13" src="../images/icon034.gif" alt="list">&nbsp;</TD>
+         <TD width="556">Upload target genomic sequence (PCR target) file<BR>
+             (<A HREF="javascript:window.open('../help/plainSeqHelp.html','help','width=600,height=300,resizable,scrollbars').focus();void(0);">plain sequence</A>,
+              <A HREF="javascript:window.open('../help/fastaHelp.html','help','width=600,height=420,resizable,scrollbars').focus();void(0);">FASTA</A> or
+              <A HREF="javascript:window.open('../help/gbHelp.html','help','width=700,height=420,resizable,scrollbars').focus();void(0);">GenBank</A> format)<BR>
+             <A style="font-size:80%">The genomic sequence</A>
+             <A style="color:#FF00FF;font-size:80%">must be an unconverted sequence</A>
+             <A style="font-size:80%">between PCR primer pair (not necessary to convert &quot;C&quot; to &quot;T&quot;).</A></TD>
+         <TD width="5"><IMG src="../images/spacer.gif" width="5" height="40" alt="space"></TD>
+        </TR>
+       </TABLE><TABLE id="inputTab4" style="display:none" border="0" cellspacing="0" cellpadding="0" summary="optional input table 2">
+        <TR align="left" style="background-color:#EEEEFF">
+         <TD width="25"></TD>
+         <TD width="556">or upload target genomic sequence (PCR target) file<BR>
+          (<A HREF="javascript:window.open('../help/plainSeqHelp.html','help','width=600,height=300,resizable,scrollbars').focus();void(0);">plain sequence</A>,
+           <A HREF="javascript:window.open('../help/fastaHelp.html','help','width=600,height=420,resizable,scrollbars').focus();void(0);">FASTA</A> or
+           <A HREF="javascript:window.open('../help/gbHelp.html','help','width=700,height=420,resizable,scrollbars').focus();void(0);">GenBank</A> format)</TD>
+         <TD width="5"></TD>
+        </TR>
+       </TABLE></TD>
+       <TD width="200" align="right"><input type="file" NAME="genomefile"></TD>
+       <TD width="14" align="right"><A id="helpLink1" style="display:inline" HREF="javascript:window.open('../help/upgenomeHelp.html','help','width=700,height=420,resizable,scrollbars').focus();void(0);"><IMG width="14" height="14" src="../images/help.gif" alt="help" border="0"></A></TD>
+      </TR>
+     </TABLE></TD>
+    </TR>
+    <!-- Input table 2-4 genome up file end -->
+
+    <!-- Input table 5 biseq 1 text start -->
+    <TR>
+     <TD><TABLE id="inputTab5" style="display:none" border="0" cellspacing="0" cellpadding="0" summary="input table 5" width="100%">
+      <TR style="background-color:#EEEEFF">
+       <TD width="25"></TD>
+       <TD width="775" colspan="2">
+          <A onmousedown="applyGen()" onkeydown="applyGen()" style="cursor:pointer;"><IMG width="10" height="10" src="../images/icon034.gif" alt="list">&nbsp;</A>
+          <A onmousedown="applyGen()" onkeydown="applyGen()" style="cursor:pointer;color:blue;text-decoration:underline">Apply sample genomic sequence</A></TD>
+      </TR>
+      <TR>
+       <TD colspan="3" width="800"><IMG src="../images/spacer.gif" width="800" height="2" alt="space"></TD>
+      </TR>
+      <TR align="left" style="background-color:#DDDDEE">
+       <TD width="25">&nbsp;<IMG width="13" height="13" src="../images/icon034.gif" alt="list">&nbsp;</TD>
+       <TD width="756">Enter bisulfite sequences in
+        <A HREF="javascript:window.open('../help/multiFastaHelp.html','help','width=600,height=420,resizable,scrollbars').focus();void(0);">multi-FASTA</A> format</TD>
+       <TD align="right" width="14"><A HREF="javascript:window.open('../help/upbiseqHelp2.html','help','width=700,height=420,resizable,scrollbars').focus();void(0);"><IMG width="14" height="14" src="../images/help.gif" alt="help" border="0"></A></TD>
+      </TR>
+      <TR align="left" style="background-color:#DDDDEE">
+       <TD width="25"></TD>
+       <TD colspan="2" width="775"><textarea ROWS="4" COLS="80" NAME="multifasta"></textarea></TD>
+      </TR>
+      <TR align="left" style="background-color:#DDDDEE">
+       <TD colspan="3"><IMG src="../images/spacer.gif" width="800" height="2" alt="space"></TD>
+      </TR>
+     </TABLE></TD>
+    </TR>
+    <!-- Input table 5 biseq 1 text end -->
+
+    <!-- Input table 6-8 biseq 1 up file start -->
+    <TR>
+     <TD><TABLE id="inputTab6" border="0" cellspacing="0" cellpadding="0" summary="input table 6" style="background-color:#EEEEFF" width="100%">
+      <TR>
+       <TD><TABLE id="inputTab7" style="display:block" border="0" cellspacing="0" cellpadding="0" summary="simple input table 6">
+        <TR align="left" style="background-color:#EEEEFF">
+         <TD width="25">&nbsp;<IMG width="13" height="13" src="../images/icon034.gif" alt="list">&nbsp;</TD>
+         <TD width="556">Upload bisulfite sequence file<BR>
+           (<A HREF="javascript:window.open('../help/multiFastaHelp.html','help','width=600,height=420,resizable,scrollbars').focus();void(0);">multi-FASTA</A> format file or
+            <A HREF="javascript:window.open('../help/zipSeqHelp.html','help','width=600,height=300,resizable,scrollbars').focus();void(0);">zipped archive of sequence files</A>)<BR>
+           <A style="font-size:80%">Raw sequence data can be used. Removal of plasmid vector sequence is not necessary.</A></TD>
+         <TD width="5"><IMG src="../images/spacer.gif" width="5" height="40" alt="space"></TD>
+        </TR>
+       </TABLE><TABLE id="inputTab8" style="display:none" border="0" cellspacing="0" cellpadding="0" summary="optional input table 6">
+        <TR align="left" style="background-color:#DDDDEE">
+         <TD width="25"></TD>
+         <TD width="556">or upload bisulfite sequence file<BR>
+         (<A HREF="javascript:window.open('../help/multiFastaHelp.html','help','width=600,height=420,resizable,scrollbars').focus();void(0);">multi-FASTA</A> format file or <A HREF="javascript:window.open('../help/zipSeqHelp.html','help','width=600,height=300,resizable,scrollbars').focus();void(0);">zipped archive of sequence files</A>)</TD>
+         <TD width="5"></TD>
+        </TR>
+       </TABLE></TD>
+       <TD width="200" align="right"><input type="file" NAME="biseq1"></TD>
+       <TD width="14" align="right"><A id="helpLink2" style="display:inline" HREF="javascript:window.open('../help/upbiseqHelp.html','help','width=700,height=420,resizable,scrollbars').focus();void(0);"><IMG width="14" height="14" src="../images/help.gif" alt="help" border="0"></A></TD>
+      </TR>
+     </TABLE></TD>
+    </TR>
+    <!-- Input table 6-8 biseq 1 up file start -->
+
+    <!-- Input table 9 biseq 2 start -->
+    <TR>
+     <TD><TABLE id="inputTab9" style="display:none" border="0" cellspacing="0" cellpadding="0" summary="input table 9" width="100%">
+      <TR style="background-color:#DDDDEE">
+       <TD></TD>
+       <TD colspan="4">Sequence group name <A style="font-size:small">(optional)</A>: &nbsp;<input type="text" NAME="gname1" SIZE="10" MAXLENGTH="32">
+        <IMG src="../images/spacer.gif" width="60" height="3" alt="space"><BR>
+        <A onmousedown="applyBi1()" onkeydown="applyBi1()" style="cursor:pointer;"><IMG width="10" height="10" src="../images/icon034.gif" alt="list">&nbsp;</A>
+        <A onmousedown="applyBi1()" onkeydown="applyBi1()" style="cursor:pointer;color:blue;text-decoration:underline">Apply sample bisulfite sequences</A></TD>
+      </TR>
+      <TR>
+       <TD colspan="5"><IMG src="../images/spacer.gif" width="800" height="2" alt="space"></TD>
+      </TR>
+      <TR align="left" style="background-color:#EEEEFF">
+       <TD width="25">&nbsp;<IMG width="13" height="13" src="../images/icon034.gif" alt="list">&nbsp;</TD>
+       <TD colspan="3"><A style="color:#AA00AA">Optional:</A> Enter second bisulfite sequences <A style="color:#AA00AA">for statistical analysis</A> (in <A HREF="javascript:window.open('../help/multiFastaHelp.html','help','width=600,height=420,resizable,scrollbars').focus();void(0);">multi-FASTA</A> format)</TD>
+       <TD align="right"><A HREF="javascript:window.open('../help/upbiseq2Help.html','help','width=700,height=420,resizable,scrollbars').focus();void(0);"><IMG width="14" height="14" src="../images/help.gif" alt="help" border="0"></A></TD>
+      </TR>
+      <TR align="left" style="background-color:#EEEEFF">
+       <TD></TD>
+       <TD colspan="4"><textarea ROWS="4" COLS="80" NAME="multifasta2"></textarea></TD>
+      </TR>
+      <TR align="left" style="background-color:#EEEEFF">
+       <TD colspan="5"><IMG src="../images/spacer.gif" width="800" height="2" alt="space"></TD>
+      </TR>
+      <TR align="left" style="background-color:#EEEEFF">
+       <TD width="25"></TD>
+       <TD width="556">or upload second bisulfite sequence file for statistical analysis<BR>
+           (<A HREF="javascript:window.open('../help/multiFastaHelp.html','help','width=600,height=420,resizable,scrollbars').focus();void(0);">multi-FASTA</A> format file or
+            <A HREF="javascript:window.open('../help/zipSeqHelp.html','help','width=600,height=300,resizable,scrollbars').focus();void(0);">zipped archive of sequence files</A>)</TD>
+       <TD width="5"></TD>
+       <TD width="200" align="right"><input type="file" NAME="biseq2"></TD>
+       <TD width="14"></TD>
+      </TR>
+      <TR align="left" style="background-color:#EEEEFF">
+       <TD></TD>
+       <TD colspan="4">Sequence group name <A style="font-size:small">(optional)</A>: &nbsp;<input type="text" NAME="gname2" SIZE="10" MAXLENGTH="32">
+        <IMG src="../images/spacer.gif" width="60" height="3" alt="space"><BR>
+        <A onmousedown="applyBi2()" onkeydown="applyBi2()" style="cursor:pointer;"><IMG width="10" height="10" src="../images/icon034.gif" alt="list">&nbsp;</A>
+        <A onmousedown="applyBi2()" onkeydown="applyBi2()" style="cursor:pointer;color:blue;text-decoration:underline">Apply sample bisulfite sequences</A></TD>
+      </TR>
+     </TABLE>
+    </TR>
+    <!-- Input table 9 biseq 2 end -->
+
+    <!-- Options start -->
+    <TR>
+     <TD><TABLE width="100%" id="optionlist1" style="display:none" border="0" cellspacing="0" cellpadding="0" summary="option table">
+      <TR>
+       <TD colspan="2"><IMG src="../images/spacer.gif" width="800" height="1" alt="space"></TD>
+      </TR>
+      <TR style="background-color:#D1D1EE">
+
+      <!-- cutoff start -->
+       <TD valign="top"><TABLE width="100%" border="0" cellspacing="0" cellpadding="0" summary="cutoff table">
+        <TR style="background-color:#DDDDEE">
+         <TD width="25" valign="middle">&nbsp;<IMG width="13" height="13" src="../images/icon034.gif" alt="list">&nbsp;
+         <TD width="327">Conditions to exclude low quality sequences<BR>
+         &nbsp;<A style="font-size:small">(CpH: CpA, CpC, CpT)</A></TD>
+         <TD align="right" width="48"><A HREF="javascript:window.open('../help/cutoffHelp.html','help','width=600,height=420,resizable,scrollbars').focus();void(0);"><IMG width="14" height="14" src="../images/help.gif" alt="help" border="0"></A>&nbsp;</TD>
+        </TR>
+        <TR style="background-color:#FFFFFF">
+         <TD colspan="3" height="1"><IMG src="../images/spacer.gif" width="1" height="1" alt="space"></TD>
+        </TR>
+        <TR style="background-color:#DFDFFA">
+         <TD width="25" valign="middle">&nbsp;&nbsp;<IMG width="10" height="10" src="../images/icon034.gif" alt="list">
+         <TD width="327">&nbsp;Upper limit of unconverted CpHs</TD>
+         <TD width="48"><input type="text" NAME="unconv" MAXLENGTH="3" SIZE="3" VALUE="5"><IMG src="../images/spacer.gif" width="10" height="2" alt="space"></TD>
+        </TR>
+        <TR style="background-color:#FFFFFF">
+         <TD colspan="3" height="1"><IMG src="../images/spacer.gif" width="1" height="1" alt="space"></TD>
+        </TR>
+        <TR style="background-color:#D1D1EE">
+         <TD width="25" valign="middle">&nbsp;&nbsp;<IMG width="10" height="10" src="../images/icon034.gif" alt="list">
+         <TD width="327">&nbsp;Lower limit of percent converted CpHs</TD>
+         <TD width="48"><input type="text" NAME="pconv" MAXLENGTH="5" SIZE="5" VALUE="95.0"><IMG src="../images/spacer.gif" width="10" height="2" alt="space"></TD>
+        </TR>
+        <TR style="background-color:#FFFFFF">
+         <TD colspan="3" height="1"><IMG src="../images/spacer.gif" width="1" height="1" alt="space"></TD>
+        </TR>
+        <TR style="background-color:#DFDFFA">
+         <TD width="25" valign="middle">&nbsp;&nbsp;<IMG width="10" height="10" src="../images/icon034.gif" alt="list">
+         <TD width="327">&nbsp;Upper limit of alignment mismatches</TD>
+         <TD width="48"><input type="text" NAME="mis" MAXLENGTH="3" SIZE="3" VALUE="10"><IMG src="../images/spacer.gif" width="10" height="2" alt="space"></TD>
+        </TR>
+        <TR style="background-color:#FFFFFF">
+         <TD colspan="3" height="1"><IMG src="../images/spacer.gif" width="1" height="1" alt="space"></TD>
+        </TR>
+        <TR style="background-color:#D1D1EE">
+         <TD width="25" valign="middle">&nbsp;&nbsp;<IMG width="10" height="10" src="../images/icon034.gif" alt="list">
+         <TD width="327">&nbsp;Lower limit of percent identity</TD>
+         <TD width="48"><input type="text" NAME="perc" MAXLENGTH="5" SIZE="5" VALUE="90.0"><IMG src="../images/spacer.gif" width="10" height="2" alt="space"></TD>
+        </TR>
+       </TABLE></TD>
+      <!-- cutoff end -->
+
+      <!-- conversion start -->
+       <TD><TABLE width="100%" border="0" cellspacing="0" cellpadding="0" summary="conversion table">
+        <TR style="background-color:#DDDDEE">
+         <TD rowspan="8" width="2" style="background-color:#FFFFFF"><IMG src="../images/spacer.gif" width="2" height="1" alt="space"></TD>
+         <TD width="25">&nbsp;<IMG width="13" height="13" src="../images/icon034.gif" alt="list">&nbsp;</TD>
+         <TD width="355">Conversion</TD>
+         <TD align="right" width="18"><A HREF="javascript:window.open('../help/conversionHelp.html','help','width=700,height=420,resizable,scrollbars').focus();void(0);"><IMG width="14" height="14" src="../images/help.gif" alt="help" border="0"></A>&nbsp;</TD>
+        </TR>
+        <TR style="background-color:#FFFFFF">
+         <TD colspan="3"><IMG src="../images/spacer.gif" width="1" height="2" alt="space"></TD>
+        </TR>
+        <TR style="background-color:#D1D1EE">
+         <TD width="25">&nbsp;<INPUT TYPE="radio" NAME="convdir" value="0" checked></TD>
+         <TD width="373">&nbsp;C =&gt; T conversion<BR><A style="font-size:small">(conversion of forward strand of the genomic sequence)</A></TD>
+         <TD></TD>
+        </TR>
+        <TR style="background-color:#FFFFFF">
+         <TD colspan="3"><IMG src="../images/spacer.gif" width="2" height="2" alt="space"></TD>
+        </TR>
+        <TR style="background-color:#DFDFFA">
+         <TD width="25">&nbsp;<INPUT TYPE="radio" NAME="convdir" value="1"></TD>
+         <TD width="373">&nbsp;G =&gt; A conversion<BR><A style="font-size:small">(conversion of reverse strand of the genomic sequence)</A></TD>
+         <TD></TD>
+        </TR>
+        <TR style="background-color:#FFFFFF">
+         <TD colspan="3"><IMG src="../images/spacer.gif" width="2" height="2" alt="space"></TD>
+         <TD></TD>
+        </TR>
+        <TR style="background-color:#D1D1EE">
+         <TD width="25">&nbsp;<INPUT TYPE="radio" NAME="convdir" value="2"></TD>
+         <TD width="373">&nbsp;Both<BR><A style="font-size:small">(search both directions and select the best result)</A></TD>
+         <TD></TD>
+        </TR>
+       </TABLE></TD>
+       <!-- Conversion end -->
+
+      </TR>
+      <TR style="background-color:#DDDDEE">
+       <TD colspan="2"><TABLE width="100%" border="0" cellspacing="0" cellpadding="0" summary="CpG checking table">
+        <TR>
+         <TD width=30>&nbsp;<IMG width="13" height="13" src="../images/icon034.gif" alt="list">&nbsp;</TD>
+         <TD>Strict CpG site check of bisulfite sequence for repetitive sequence analysis: <INPUT TYPE="checkbox" NAME="cpgcheck" value="on"></TD>
+         <TD align="right" width="18"><A HREF="javascript:window.open('../help/cpgcheckHelp.html','help','width=700,height=420,resizable,scrollbars').focus();void(0);"><IMG width="14" height="14" src="../images/help.gif" alt="help" border="0"></A>&nbsp;</TD>
+        </TR>
+       </TABLE></TD>
+      </TR>
+      <TR style="background-color:#D1D1EE">
+       <TD colspan="2"><TABLE width="100%" border="0" cellspacing="0" cellpadding="0" summary="CpG checking table">
+        <TR>
+         <TD width=30>&nbsp;<IMG width="13" height="13" src="../images/icon034.gif" alt="list">&nbsp;</TD>
+         <TD>Exclude identical bisulfite sequences: <INPUT TYPE="checkbox" NAME="uniq" value="on"></TD>
+         <TD align="right" width="18"><A HREF="javascript:window.open('../help/uniqcheckHelp.html','help','width=700,height=420,resizable,scrollbars').focus();void(0);"><IMG width="14" height="14" src="../images/help.gif" alt="help" border="0"></A>&nbsp;</TD>
+        </TR>
+       </TABLE></TD>
+      </TR>
+     </TABLE></TD>
+    </TR>
+    <!-- Options end -->
+
+    <!-- submit start -->
+    <TR>
+     <TD><TABLE border="0" cellspacing="0" cellpadding="0" summary="button table" width="100%">
+      <TR>
+       <TD colspan="4"><IMG src="../images/spacer.gif" width="800" height="2" alt="space"></TD>
+      </TR>
+      <TR align="left" style="background-color:#EEEEFF">
+       <TD><IMG src="../images/spacer.gif" width="10" height="30" alt="space"></TD>
+       <TD valign="middle"><input type="reset" value="Reset">
+           <IMG src="../images/spacer.gif" width="20" height="10" alt="space">
+           <input type="submit" name="allsub" value="Submit"></TD>
+       <TD><DIV onmousedown="foption()"
+        onkeydown="foption()" style="cursor:pointer;">&nbsp;<IMG id="optImage1"
+        src="../images/icon030.gif" alt="arrow" width="10" height="10">&nbsp;&nbsp;&nbsp;
+        <A id="textvalue" style="color:blue;text-decoration:underline">Show options</A></DIV></TD>
+       <TD align="right">
+        <IMG src="../images/spacer.gif" width="250" height="20" alt="space">
+        <A HREF="index.html" target="_top" style="font-size:x-small">
+         Go to Home Page<IMG  border="0" src="../images/spacer.gif" width="10" height="10" alt="space"><IMG border="0" src="../images/home.gif" alt="QUMA (QUantification tool for Methylation Analysis) top"></A></TD>
+      </TR>
+     </TABLE></TD>
+    </TR>
+   </TABLE>
+   </FORM>
+   <!-- submit end -->
+
+    <!-- Restore input table start -->
+   <FORM onSubmit="if(checkRestore()){return true;}else{return false;}" ACTION="/cgi-bin/makeBisulfiteData.cgi" ENCTYPE="multipart/form-data"
+    METHOD="POST" target="downner" name="restore">
+   <TABLE border="0" cellspacing="0" cellpadding="0" summary="restore input table" width="800">
+    <TR align="left"  style="background-color:#D1D1EE" valign="middle">
+     <TD width="25">&nbsp;<IMG width="13" height="13" src="../images/icon034.gif" alt="list">&nbsp;</TD>
+     <TD style="font-size:small" width="476">Upload QUMA restore file (.qma) to restore the analysis</TD>
+     <TD width="5"><IMG src="../images/spacer.gif" width="5" height="40" alt="space"></TD>
+     <TD width="200" align="right"><input type="file" NAME="restorefile"></TD>
+     <TD width="80" align="right">&nbsp;<input type="submit" name="ressub" value="Restore"></TD>
+     <TD width="14" align="right"><A HREF="javascript:window.open('../help/restoreHelp.html','help','width=650,height=600,resizable,scrollbars').focus();void(0);"><IMG width="14" height="14" src="../images/help.gif" alt="help" border="0"></A></TD>
+    </TR>
+   </TABLE>
+   </FORM>
+   <!-- Restore input table end -->
+
+   <!-- Whats New start -->
+   <TABLE ALIGN="center" border="0" cellspacing="0" cellpadding="0" summary="Whats new" width="800" style="background-color:#E1EAEE">
+    <TR style="background-color:#7777DD">
+     <TD align="center"><IMG src="../images/spacer.gif" width="800" height="3" alt="space"></TD>
+    </TR>
+    <TR>
+     <TD style="color:#4444AA;font-size:large;font-weight:bold;font-style:italic">
+      &nbsp;&nbsp;&nbsp;&nbsp;What&#39;s New
+     </TD>
+    </TR>
+    <TR style="background-color:#7777DD">
+     <TD><IMG src="../images/spacer.gif" width="800" height="3" alt="space"></TD>
+    </TR>
+    <TR>
+     <TD><IMG src="../images/spacer.gif" width="800" height="10" alt="space"></TD>
+    </TR>
+    <TR style="background-color:#E1EAEE">
+     <TD align="left">
+      <UL>
+       <LI>May 15 2019, Jul 19 2014, Jan 16 2014, Apr 9 2013<!--&nbsp;&nbsp;&nbsp;<IMG border="0" src="../images/icon005.gif" alt="new">-->
+       <UL>
+	<LI>Minor modification
+       </UL>
+       <LI>Oct 25 2012<!--&nbsp;&nbsp;&nbsp;<IMG border="0" src="../images/icon005.gif" alt="new">-->
+       <UL>
+	<LI>Minor bug fixed
+       </UL>
+       <LI>Aug 23 2012
+       <UL>
+	<LI>ABI format file (with &quot;.ab1&quot; extension) is now acceptable for bisuflite sequece file
+       </UL>
+       <LI>May 23 2012
+       <UL>
+	<LI>Exclude identical bisulfite sequences option is added (Click above 'Show options' to display)
+       </UL>
+       <LI><A href="whatsNew.html" target="downner">Previous News</A>
+      </UL>
+     </TD>
+    </TR>
+   </TABLE>
+   <!-- Whats New end -->
+
+   <!-- supported browser start -->
+   <TABLE ALIGN="center" border="0" cellspacing="0" cellpadding="0" summary="Supported browsers table" width="800" style="background-color:#EAEEFF">
+    <TR style="background-color:#FFFFFF">
+     <TD align="center"><IMG src="../images/spacer.gif" width="800" height="10" alt="space"></TD>
+    </TR>
+    <TR style="background-color:#7777DD">
+     <TD align="center"><IMG src="../images/spacer.gif" width="800" height="3" alt="space"></TD>
+    </TR>
+    <TR>
+     <TD style="color:#4444AA;font-size:large;font-weight:bold;font-style:italic">
+      &nbsp;&nbsp;&nbsp;&nbsp;Supported browsers
+     </TD>
+    </TR>
+    <TR style="background-color:#7777DD">
+     <TD><IMG src="../images/spacer.gif" width="800" height="3" alt="space"></TD>
+    </TR>
+    <TR>
+     <TD><IMG src="../images/spacer.gif" width="800" height="10" alt="space"></TD>
+    </TR>
+    <TR style="background-color:#EAEEFF">
+     <TD align="left"><TABLE border="0" cellspacing="0" cellpadding="5" summary="Suppoted browsers each table">
+      <TR>
+       <TD>We support the following web browsers;
+        <UL>
+         <LI>Firefox (Mac/Win)
+         <LI>Safari (Mac)
+         <LI>Opera (Mac/Win)
+         <LI>Internet Explorer(IE) 6.0 and higher (Win) &nbsp;(IE 7/8 is not recommended because it has many bugs)
+        </UL>
+        Many browsers such as IE 5.0 for Windows, Mozilla, and Netscape 6 and higher may work as well.<BR>
+        Some older browsers such as IE for Mac or Netscape 4 will not work.
+       </TD>
+      </TR>
+     </TABLE></TD>
+    </TR>
+   </TABLE>
+<!-- supported browser end -->
+
+<!-- Foot Start -->
+   <HR width="800">
+   <TABLE style="margin-left:auto;margin-right:auto" summary="foot"><TBODY>
+    <TR>
+     <TD align="center"  rowspan="3">
+      <A target="_blank" href="http://www.riken.jp/engn/index.html"><IMG src="../images/riken_s2.png"
+       width="36" height="61" style="border-width:0;vertical-align:middle" alt="RIKEN"></A>
+     </TD>
+     <TD align="center" rowspan="3">
+      <IMG src="../images/spacer.gif" alt="spacer" width="1" height="10">
+     </TD>
+     <TD rowspan="3">
+      <HR style="width:1px;height:30px">
+     </TD>
+     <TD align="center" rowspan="3">
+      <IMG src="../images/spacer.gif" alt="spacer" width="1" height="10">
+     </TD>
+     <TD>
+      <TABLE border="0" cellspacing="0" cellpadding="0" summary="contact"><TBODY>
+       <TR>
+        <TD valign="middle" style="font-size:small">
+         If you have any questions/comments/requests etc., please feel free to contact
+        </TD>
+        <TD valign="middle">
+        &nbsp;:&nbsp;
+        </TD>
+        <TD valign="middle" style="font-size:small;color:#006633">
+         <ADDRESS>
+          <A href="mailto:quma@cdb.riken.jp">quma@cdb.riken.jp</A>
+         </ADDRESS>
+        </TD>
+       </TR>
+      </TBODY></TABLE>
+     </TD>
+    </TR>
+    <TR>
+     <TD valign="middle" style="font-size:small">
+     If you link to QUMA web site, please use this URL <A HREF="http://quma.cdb.riken.jp/" target="_top">http://quma.cdb.riken.jp/</A>
+     </TD>
+    </TR>
+    <TR>
+     <TD valign="middle" style="font-size:small">
+      Copyright&#169;&nbsp;2008-2019 <A target="_blank" href="http://www.riken.jp/engn/index.html">RIKEN</A> All rights reserved.
+     </TD>
+    </TR>
+   </TBODY></TABLE>
+   <TABLE ALIGN="center" border="0" cellspacing="0" cellpadding="0" summary="Last updated" width="800">
+    <TR>
+     <TD align="right" style="font-size:small" colspan="10">Last updated at Wed May 15 19:00:00 JST 2019</TD>
+     <TD><IMG src="../images/spacer.gif" alt="spacer" width="5" height="1"></TD>
+     <TD width="90" align="right"><A HREF="index.html" target="_top"><IMG border="0" src="../images/home.gif" alt="QUMA (QUantification tool for Methylation Analysis) top"></A></TD>
+    </TR>
+   </TABLE>
+<!-- Foot End -->
+  </DIV>
+  <SCRIPT type="text/javascript" language="JavaScript">
+  <!--
+  document.allform.sampleData.value = "0";
+  checkShow ();
+  //-->
+  </SCRIPT>
+ </BODY>
+</HTML>

@@ -1,0 +1,605 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!--
+//*****************************************************************************
+//*                                                                           *
+//* File name: utestHelp.html                                                 *
+//* html for help of Mann-Whitney U-test                                      *
+//* Author: Yuichi Kumaki (yuichi@kumaki.jp)                                  *
+//* Copyright (C) 2008-2019 Yuichi Kumaki                                     *
+//*                                                                           *
+//* 2008/04/06 First open source version                                      *
+//*                                                                           *
+//*****************************************************************************
+//*                                                                           *
+//* This program is free software: you can redistribute it and/or modify      *
+//* it under the terms of the GNU General Public License as published by      *
+//* the Free Software Foundation, either version 3 of the License, or         *
+//* (at your option) any later version.                                       *
+//*                                                                           *
+//* This program is distributed in the hope that it will be useful,           *
+//* but WITHOUT ANY WARRANTY; without even the implied warranty of            *
+//* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the             *
+//* GNU General Public License for more details.                              *
+//*                                                                           *
+//* You should have received a copy of the GNU General Public License         *
+//* along with this program.  If not, see http://www.gnu.org/licenses/.       *
+//*                                                                           *
+//*****************************************************************************
+-->
+<HTML lang="en">
+ <HEAD>
+  <META HTTP-EQUIV="Content-Type" content="text/html; charset=ISO-8859-1">
+  <META HTTP-EQUIV="Content-Script-Type" content="text/javascript">
+  <META HTTP-EQUIV="Content-Style-Type" content="text/css">
+  <LINK REV="MADE" HREF="mailto:yuichi@kumaki.jp">
+  <LINK REL="INDEX" HREF="../top/index.html">
+  <TITLE>Mann-Whitney U-test</TITLE>
+ </HEAD>
+ <BODY style="background-color:#FFFFFF">
+  <TABLE align="center" border="0" cellspacing="0" cellpadding="0" summary="title table">
+   <TR style="background-color:#3333CC">
+    <TD><IMG src="../images/spacer.gif" width="250" height="3" alt="space"></TD>
+   </TR>
+   <TR>
+    <TD align="center" style="color:#333399;font-size:large;font-weight:bold;font-style:italic">
+     Mann-Whitney U-test
+    </TD>
+   </TR>
+   <TR style="background-color:#3333CC">
+    <TD><IMG src="../images/spacer.gif" width="250" height="3" alt="space"></TD>
+   </TR>
+  </TABLE>
+  <DIV STYLE="text-align:right">
+   <A HREF="../top/index.html" target="_top"><IMG border="0" src="../images/home.gif" alt="QUMA (QUantification tool for Methylation Analysis) top"></A>
+   <IMG src="../images/spacer.gif" alt="spacer" width="5" height="1">
+   <A HREF="javascript:window.close();void(0);"><IMG SRC="../images/iconClose.gif" ALT="close" border="0"></A></DIV>
+  <TABLE ALIGN="center" border="0" cellspacing="0" cellpadding="3" summary="example table" width="550">
+   <TR style="background-color:#EAEAFF">
+    <TD style="font-weight:bold">The statistical significance between two groups of the entire set of CpG sites is evaluated with the
+     <A HREF="http://en.wikipedia.org/wiki/Mann-Whitney_U" target="_blank">Mann-Whitney U-test</A>
+     (also called the Wilcoxon rank-sum test)
+     that is non-parametric statistical significance test for two distributed samples.
+     Although, Student&#39;s t-test is useful in the same situations as Mann-Whitney U-test, 
+     we adopt not the parametric Student&#39;s t-test but the non-parametric Mann-Whitney U-test,
+      because methylation status does not distribute as a normal distribution, especially in case of hyper- or
+     hypo-methylation. Two-tailed p-value of the Mann-Whitney U-test is determined from ranks of ratio of
+     methylated CpGs to all CpGs at each bisulfite sequence (exampled below).
+     This p-value indicates the independence of distribution of the ratio of CpG methylation to all CpG.<BR>
+     Importantly, this test dose not detect differences in the some situations, especially CpG methylation of imprinting regions,
+     because this test only check the difference of the average of two groups.
+     Additionally, the patterns of CpG methylation are not considered.</TD>
+   </TR>
+   <TR style="background-color:#DDDDEE">
+    <TD>&nbsp;<IMG width="10" height="10" src="../images/icon034.gif" alt="list">
+        &nbsp;<A style="font-weight:bold">Example</A></TD>
+   </TR>
+   <TR style="background-color:#EEEEFA">
+    <TD>
+     The sample data sets are:
+    </TD>
+   </TR>
+   <TR style="background-color:#EEEEFA">
+    <TD><TABLE ALIGN="left" border="1" cellspacing="0" cellpadding="3" summary="example1" style="font-size:small">
+     <TR>
+      <TH></TH>
+      <TH>Me-CpGs/CpGs of each sequence<BR><A style="font-size:x-small">(number of methylated CpGs / number of CpGs)</A></TH>
+      <TH>average ratio of<BR>methylation</TH>
+      <TH>number of<BR>sequences</TH>
+     </TR>
+     <TR>
+      <TH>group1</TH>
+      <TD style="font-size:x-small" nowrap>6/19, 6/19, 8/19, 9/19 12/19, 15/19, 16/19, 18/19, 18/19, 18/19, 18/18, 19/19, 19/19</TD>
+      <TD align="right">0.7409</TD>
+      <TD align="right">13 (= n<sub>1</sub>)</TD>
+     </TR>
+     <TR>
+      <TH>group2</TH>
+      <TD style="font-size:x-small" nowrap>2/19, 2/19, 3/19, 3/19 5/19, 5/19, 7/19, 7/19, 7/19, 8/19</TD>
+      <TD align="right">0.2579</TD>
+      <TD align="right">10 (= n<sub>2</sub>)</TD>
+     </TR>
+    </TABLE></TD>
+   </TR>
+   <TR style="background-color:#EEEEFA">
+    <TD>
+    <A style="font-size:small">(This is the analyzed data of the QUMA sample sequence files.)</A><BR>
+     Is this difference between the average ratio of methylation (0.7409 vs. 0.2579) significant?
+    </TD>
+   </TR>
+   <TR style="background-color:#DDDDEE">
+    <TD>
+    First, make ranking of the values (methylation ratio) and determine a rank. When two or more values are share the same rank, take an average of the rank values. In the sample data, two sequences are Me-CpGs/CpGs = 3/19 and the rank values are 3 and 4. Then use 3.5 (average of 3 and 4) as the rank.<BR>
+    Second, calculate sum of the rank (Rank sum): R<sub>1</sub> and R<sub>2</sub>.
+    </TD>
+   </TR>
+   <TR style="background-color:#DDDDEE">
+    <TD><TABLE ALIGN="left" border="1" cellspacing="0" cellpadding="3" summary="example" style="font-size:small">
+     <TR>
+      <TH colspan ="2">Position i</TH>
+      <TD align="right">1</TD>
+      <TD align="right">2</TD>
+      <TD align="right">3</TD>
+      <TD align="right">4</TD>
+      <TD align="right">5</TD>
+      <TD align="right">6</TD>
+      <TD align="right">7</TD>
+      <TD align="right">8</TD>
+      <TD align="right">9</TD>
+      <TD align="right">10</TD>
+      <TD align="right">11</TD>
+      <TD align="right">12</TD>
+      <TH rowspan="4">Rank sum</TH>
+     </TR>
+     <TR>
+      <TH colspan ="2">Me-CpGs/CpGs</TH>
+      <TD align="right">2/19</TD>
+      <TD align="right">3/19</TD>
+      <TD align="right">5/19</TD>
+      <TD align="right">6/19</TD>
+      <TD align="right">7/19</TD>
+      <TD align="right">8/19</TD>
+      <TD align="right">9/19</TD>
+      <TD align="right">12/19</TD>
+      <TD align="right">15/19</TD>
+      <TD align="right">16/19</TD>
+      <TD align="right">18/19</TD>
+      <TD align="right">1</TD>
+     </TR>
+     <TR>
+      <TH colspan="2">rank</TH>
+      <TD align="right">1,2</TD>
+      <TD align="right">3,4</TD>
+      <TD align="right">5,6</TD>
+      <TD align="right">7,8</TD>
+      <TD align="right">9-11</TD>
+      <TD align="right">12,13</TD>
+      <TD align="right">14</TD>
+      <TD align="right">15</TD>
+      <TD align="right">16</TD>
+      <TD align="right">17</TD>
+      <TD align="right">18-20</TD>
+      <TD align="right">21-23</TD>
+     </TR>
+     <TR>
+      <TH colspan="2">rank (average)</TH>
+      <TD align="right">1.5</TD>
+      <TD align="right">3.5</TD>
+      <TD align="right">5.5</TD>
+      <TD align="right">7.5</TD>
+      <TD align="right">10</TD>
+      <TD align="right">12.5</TD>
+      <TD align="right">14</TD>
+      <TD align="right">15</TD>
+      <TD align="right">16</TD>
+      <TD align="right">17</TD>
+      <TD align="right">19</TD>
+      <TD align="right">22</TD>
+     </TR>
+     <TR>
+      <TH rowspan="3">number of<BR>sequences</TH>
+      <TH>group1</TH>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">2</TD>
+      <TD align="right">0</TD>
+      <TD align="right">1</TD>
+      <TD align="right">1</TD>
+      <TD align="right">1</TD>
+      <TD align="right">1</TD>
+      <TD align="right">1</TD>
+      <TD align="right">3</TD>
+      <TD align="right">3</TD>
+      <TD align="right" nowrap>212.5 (=R<sub>1</sub>)</TD>
+     </TR>
+     <TR>
+      <TH>group2</TH>
+      <TD align="right">2</TD>
+      <TD align="right">2</TD>
+      <TD align="right">2</TD>
+      <TD align="right">0</TD>
+      <TD align="right">3</TD>
+      <TD align="right">1</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">63.5 (=R<sub>2</sub>)</TD>
+     </TR>
+     <TR>
+      <TH>total</TH>
+      <TD align="right">2</TD>
+      <TD align="right">2</TD>
+      <TD align="right">2</TD>
+      <TD align="right">2</TD>
+      <TD align="right">3</TD>
+      <TD align="right">2</TD>
+      <TD align="right">1</TD>
+      <TD align="right">1</TD>
+      <TD align="right">1</TD>
+      <TD align="right">1</TD>
+      <TD align="right">3</TD>
+      <TD align="right">3</TD>
+      <TD></TD>
+     </TR>
+    </TABLE></TD>
+   </TR>
+   <TR style="background-color:#EEEEFA">
+    <TD>
+     Third, determine temporary U-value, U1 and U2, as below.<BR>
+     U1 = n<sub>1</sub> * n<sub>2</sub> + n<sub>1</sub> * (n<sub>1</sub> + 1) / 2 - R<sub>1</sub> = 8.5<BR>
+     U2 = n<sub>1</sub> * n<sub>2</sub> + n<sub>2</sub> * (n<sub>2</sub> + 1) / 2 - R<sub>2</sub> = 121.5<BR>
+     Take the smaller value of U1 and U2 as the U-value. In this case, U = 8.5<BR>
+     Then determine a two-tailed p-value from the U-value. To determine the p-value, we take the approximation using the normal distribution for the number of sequences above 20.
+     In the case of small sequences (20 and below), we determine the p-value from exact probabilities (Mann Whitney U exact test).
+    </TD>
+   </TR>
+   <TR style="background-color:#DDDDEE">
+    <TD>
+     The normal approximation is performed as:<BR>
+     <IMG SRC="../images/image001.png" ALT="fomula1" border="0"><BR>
+     where z is a standard normal deviate, E(U) is the mean of U and V(U) is the variance of U:<BR>
+     <IMG SRC="../images/image003.png" ALT="fomula2" border="0"><BR>
+     <IMG SRC="../images/image005.png" ALT="fomula3" border="0"><BR>
+     where t<sub>i</sub> is the number of tied ranks of the position i.<BR>
+     At the sample, E(U) = 65, V(U) = 257.812 and z = 3.51879. Then, the two-tailed p-value = 0.0004 is determined from the standard normal distribution (double value for two-tail).
+    </TD>
+   </TR>
+   <TR style="background-color:#EEEEFA">
+    <TD>
+     Another sample data sets for Mann Whitne U exact test are:
+    </TD>
+   </TR>
+   <TR style="background-color:#EEEEFA">
+    <TD>
+     Table1
+    </TD>
+   </TR>
+   <TR style="background-color:#EEEEFA">
+    <TD><TABLE ALIGN="left" border="1" cellspacing="0" cellpadding="3" summary="example1" style="font-size:small">
+     <TR>
+      <TH></TH>
+      <TH>Me-CpGs/CpGs of each sequence<BR><A style="font-size:x-small">(number of methylated CpGs / number of CpGs)</A></TH>
+      <TH>average ratio of<BR>methylation</TH>
+      <TH>number of<BR>sequences</TH>
+     </TR>
+     <TR>
+      <TH>group1</TH>
+      <TD style="font-size:x-small" nowrap>6/19, 6/19, 9/19 12/19, 15/19, 18/19</TD>
+      <TD align="right">0.5789</TD>
+      <TD align="right">6 (= n<sub>1</sub>)</TD>
+     </TR>
+     <TR>
+      <TH>group2</TH>
+      <TD style="font-size:x-small" nowrap>3/19, 5/19, 5/19, 7/19, 7/19</TD>
+      <TD align="right">0.2842</TD>
+      <TD align="right">5 (= n<sub>2</sub>)</TD>
+     </TR>
+    </TABLE></TD>
+   </TR>
+   <TR style="background-color:#DDDDEE">
+    <TD>
+     Table2
+    </TD>
+   </TR>
+   <TR style="background-color:#DDDDEE">
+    <TD><TABLE ALIGN="left" border="1" cellspacing="0" cellpadding="3" summary="example" style="font-size:small">
+     <TR>
+      <TH colspan ="2">Position i</TH>
+      <TD align="right">1</TD>
+      <TD align="right">2</TD>
+      <TD align="right">3</TD>
+      <TD align="right">4</TD>
+      <TD align="right">5</TD>
+      <TD align="right">6</TD>
+      <TD align="right">7</TD>
+      <TD align="right">8</TD>
+      <TH rowspan="4">number of<BR>sequences</TH>
+      <TH rowspan="4">Rank sum</TH>
+     </TR>
+     <TR>
+      <TH colspan ="2">Me-CpGs/CpGs</TH>
+      <TD align="right">3/19</TD>
+      <TD align="right">5/19</TD>
+      <TD align="right">6/19</TD>
+      <TD align="right">7/19</TD>
+      <TD align="right">9/19</TD>
+      <TD align="right">12/19</TD>
+      <TD align="right">15/19</TD>
+      <TD align="right">18/19</TD>
+     </TR>
+     <TR>
+      <TH colspan="2">rank</TH>
+      <TD align="right">1</TD>
+      <TD align="right">2,3</TD>
+      <TD align="right">4,5</TD>
+      <TD align="right">6,7</TD>
+      <TD align="right">8</TD>
+      <TD align="right">9</TD>
+      <TD align="right">10</TD>
+      <TD align="right">11</TD>
+     </TR>
+     <TR>
+      <TH colspan="2">rank (average)</TH>
+      <TD align="right">1</TD>
+      <TD align="right">2.5</TD>
+      <TD align="right">4.5</TD>
+      <TD align="right">6.5</TD>
+      <TD align="right">8</TD>
+      <TD align="right">9</TD>
+      <TD align="right">10</TD>
+      <TD align="right">11</TD>
+     </TR>
+     <TR>
+      <TH rowspan="3">number of<BR>sequences</TH>
+      <TH>group1</TH>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">2</TD>
+      <TD align="right">0</TD>
+      <TD align="right">1</TD>
+      <TD align="right">1</TD>
+      <TD align="right">1</TD>
+      <TD align="right">1</TD>
+      <TD align="right">6</TD>
+      <TD align="right" nowrap>47 (=R<sub>1</sub>)</TD>
+     </TR>
+     <TR>
+      <TH>group2</TH>
+      <TD align="right">1</TD>
+      <TD align="right">2</TD>
+      <TD align="right">0</TD>
+      <TD align="right">2</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0</TD>
+      <TD align="right">5</TD>
+      <TD align="right">19 (=R<sub>2</sub>)</TD>
+     </TR>
+     <TR>
+      <TH>total</TH>
+      <TD align="right">1</TD>
+      <TD align="right">2</TD>
+      <TD align="right">2</TD>
+      <TD align="right">2</TD>
+      <TD align="right">1</TD>
+      <TD align="right">1</TD>
+      <TD align="right">1</TD>
+      <TD align="right">1</TD>
+      <TD align="right">11</TD>
+      <TD></TD>
+     </TR>
+    </TABLE></TD>
+   </TR>
+   <TR style="background-color:#DDDDEE">
+    <TD>
+     U1 = n<sub>1</sub> * n<sub>2</sub> + n<sub>1</sub> * (n<sub>1</sub> + 1) / 2 - R<sub>1</sub> = 4<BR>
+     U2 = n<sub>1</sub> * n<sub>2</sub> + n<sub>2</sub> * (n<sub>2</sub> + 1) / 2 - R<sub>2</sub> = 26<BR>
+     U = min (U1, U2) = 4<BR>
+    </TD>
+   </TR>
+   <TR style="background-color:#EEEEFA">
+    <TD>
+     When the marginal totals are fixed, there are 179 cases and 11 cases indicated below have U-value not more than the U-value of the sample.
+    </TD>
+   </TR>
+   <TR style="background-color:#EEEEFA">
+    <TD><TABLE ALIGN="left" border="1" cellspacing="0" cellpadding="3" summary="example" style="font-size:small">
+     <TR>
+      <TH>Position i</TH>
+      <TD align="right">1</TD>
+      <TD align="right">2</TD>
+      <TD align="right">3</TD>
+      <TD align="right">4</TD>
+      <TD align="right">5</TD>
+      <TD align="right">6</TD>
+      <TD align="right">7</TD>
+      <TD align="right">8</TD>
+      <TH rowspan="4">Rank<BR>sum</TH>
+      <TH rowspan="4">U-value</TH>
+      <TH rowspan="4">Probability</TH>
+     </TR>
+     <TR>
+      <TH>Me-CpGs/CpGs</TH>
+      <TD align="right">3/19</TD>
+      <TD align="right">5/19</TD>
+      <TD align="right">6/19</TD>
+      <TD align="right">7/19</TD>
+      <TD align="right">9/19</TD>
+      <TD align="right">12/19</TD>
+      <TD align="right">15/19</TD>
+      <TD align="right">18/19</TD>
+     </TR>
+     <TR>
+      <TH>rank</TH>
+      <TD align="right">1</TD>
+      <TD align="right">2,3</TD>
+      <TD align="right">4,5</TD>
+      <TD align="right">6,7</TD>
+      <TD align="right">8</TD>
+      <TD align="right">9</TD>
+      <TD align="right">10</TD>
+      <TD align="right">11</TD>
+     </TR>
+     <TR>
+      <TH>rank (average)</TH>
+      <TD align="right">1</TD>
+      <TD align="right">2.5</TD>
+      <TD align="right">4.5</TD>
+      <TD align="right">6.5</TD>
+      <TD align="right">8</TD>
+      <TD align="right">9</TD>
+      <TD align="right">10</TD>
+      <TD align="right">11</TD>
+     </TR>
+     <TR>
+      <TH>group1/group2</TH>
+      <TD align="right">1/0</TD>
+      <TD align="right">2/0</TD>
+      <TD align="right">2/0</TD>
+      <TD align="right">1/1</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">21.5/44.5</TD>
+      <TD align="right">0.5</TD>
+      <TD align="right">0.00433</TD>
+     </TR>
+     <TR>
+      <TH>group1/group2</TH>
+      <TD align="right">1/0</TD>
+      <TD align="right">2/0</TD>
+      <TD align="right">2/0</TD>
+      <TD align="right">0/2</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">23/43</TD>
+      <TD align="right">2</TD>
+      <TD align="right">0.00216</TD>
+     </TR>
+     <TR>
+      <TH>group1/group2</TH>
+      <TD align="right">1/0</TD>
+      <TD align="right">2/0</TD>
+      <TD align="right">2/0</TD>
+      <TD align="right">0/2</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">24/42</TD>
+      <TD align="right">3</TD>
+      <TD align="right">0.00216</TD>
+     </TR>
+     <TR>
+      <TH>group1/group2</TH>
+      <TD align="right">1/0</TD>
+      <TD align="right">2/0</TD>
+      <TD align="right">2/0</TD>
+      <TD align="right">0/2</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">25/41</TD>
+      <TD align="right">4</TD>
+      <TD align="right">0.00216</TD>
+     </TR>
+     <TR>
+      <TH>group1/group2</TH>
+      <TD align="right">1/0</TD>
+      <TD align="right">2/0</TD>
+      <TD align="right">1/1</TD>
+      <TD align="right">2/0</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">23.5/42.5</TD>
+      <TD align="right">2.5</TD>
+      <TD align="right">0.00433</TD>
+     </TR>
+     <TR>
+      <TH>group1/group2</TH>
+      <TD align="right">1/0</TD>
+      <TD align="right">2/0</TD>
+      <TD align="right">1/1</TD>
+      <TD align="right">1/1</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">25/41</TD>
+      <TD align="right">4</TD>
+      <TD align="right">0.00866</TD>
+     </TR>
+     <TR>
+      <TH>group1/group2</TH>
+      <TD align="right">0/1</TD>
+      <TD align="right">1/1</TD>
+      <TD align="right">0/2</TD>
+      <TD align="right">1/1</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">47/19</TD>
+      <TD align="right">4</TD>
+      <TD align="right">0.00866</TD>
+     </TR>
+     <TR style="color:magenta">
+      <TH>group1/group2</TH>
+      <TD align="right">0/1</TD>
+      <TD align="right">0/2</TD>
+      <TD align="right">2/0</TD>
+      <TD align="right">0/2</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">47/19</TD>
+      <TD align="right">4</TD>
+      <TD align="right">0.00216</TD>
+     </TR>
+     <TR>
+      <TH>group1/group2</TH>
+      <TD align="right">0/1</TD>
+      <TD align="right">0/2</TD>
+      <TD align="right">1/1</TD>
+      <TD align="right">2/0</TD>
+      <TD align="right">0/1</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">47.5/18.5</TD>
+      <TD align="right">3.5</TD>
+      <TD align="right">0.00433</TD>
+     </TR>
+     <TR>
+      <TH>group1/group2</TH>
+      <TD align="right">0/1</TD>
+      <TD align="right">0/2</TD>
+      <TD align="right">1/1</TD>
+      <TD align="right">1/1</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">49/17</TD>
+      <TD align="right">2</TD>
+      <TD align="right">0.00866</TD>
+     </TR>
+
+     <TR>
+      <TH>group1/group2</TH>
+      <TD align="right">0/1</TD>
+      <TD align="right">0/2</TD>
+      <TD align="right">0/2</TD>
+      <TD align="right">2/0</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">1/0</TD>
+      <TD align="right">51/15</TD>
+      <TD align="right">0</TD>
+      <TD align="right">0.00216</TD>
+     </TR>
+    </TABLE></TD>
+   </TR>
+   <TR style="background-color:#EEEEFA">
+    <TD>To determine a two-tailed p-value of the significance, make a sum of probabilities of these 11 cases. Then, the two-tailed p-value = 0.0498
+    </TD>
+   </TR>
+  </TABLE>
+  <DIV STYLE="text-align:right">
+   <A HREF="../top/index.html" target="_top"><IMG border="0" src="../images/home.gif" alt="QUMA (QUantification tool for Methylation Analysis) top"></A>
+   <IMG src="../images/spacer.gif" alt="spacer" width="5" height="1">
+   <A HREF="javascript:window.close();void(0);"><IMG SRC="../images/iconClose.gif" ALT="close" border="0"></A></DIV>
+ </BODY>
+</HTML>

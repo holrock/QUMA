@@ -1,0 +1,255 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!--
+//*****************************************************************************
+//*                                                                           *
+//* File name: fisherHelp.html                                                *
+//* html for help of fisher's exact test                                      *
+//* Author: Yuichi Kumaki (yuichi@kumaki.jp)                                  *
+//* Copyright (C) 2008-2019 Yuichi Kumaki                                     *
+//*                                                                           *
+//* 2008/04/06 First open source version                                      *
+//*                                                                           *
+//*****************************************************************************
+//*                                                                           *
+//* This program is free software: you can redistribute it and/or modify      *
+//* it under the terms of the GNU General Public License as published by      *
+//* the Free Software Foundation, either version 3 of the License, or         *
+//* (at your option) any later version.                                       *
+//*                                                                           *
+//* This program is distributed in the hope that it will be useful,           *
+//* but WITHOUT ANY WARRANTY; without even the implied warranty of            *
+//* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the             *
+//* GNU General Public License for more details.                              *
+//*                                                                           *
+//* You should have received a copy of the GNU General Public License         *
+//* along with this program.  If not, see http://www.gnu.org/licenses/.       *
+//*                                                                           *
+//*****************************************************************************
+-->
+<HTML lang="en">
+ <HEAD>
+  <META HTTP-EQUIV="Content-Type" content="text/html; charset=ISO-8859-1">
+  <META HTTP-EQUIV="Content-Script-Type" content="text/javascript">
+  <META HTTP-EQUIV="Content-Style-Type" content="text/css">
+  <LINK REV="MADE" HREF="mailto:yuichi@kumaki.jp">
+  <LINK REL="INDEX" HREF="../top/index.html">
+  <TITLE>Fisher&#39;s exact test</TITLE>
+ </HEAD>
+ <BODY style="background-color:#FFFFFF">
+  <TABLE align="center" border="0" cellspacing="0" cellpadding="0" summary="title table">
+   <TR style="background-color:#3333CC">
+    <TD><IMG src="../images/spacer.gif" width="250" height="3" alt="space"></TD>
+   </TR>
+   <TR>
+    <TD align="center" style="color:#333399;font-size:large;font-weight:bold;font-style:italic">
+     Fisher&#39;s exact test
+    </TD>
+   </TR>
+   <TR style="background-color:#3333CC">
+    <TD><IMG src="../images/spacer.gif" width="250" height="3" alt="space"></TD>
+   </TR>
+  </TABLE>
+  <DIV STYLE="text-align:right">
+   <A HREF="../top/index.html" target="_top"><IMG border="0" src="../images/home.gif" alt="QUMA (QUantification tool for Methylation Analysis) top"></A>
+   <IMG src="../images/spacer.gif" alt="spacer" width="5" height="1">
+   <A HREF="javascript:window.close();void(0);"><IMG SRC="../images/iconClose.gif" ALT="close" border="0"></A></DIV>
+  <TABLE ALIGN="center" border="0" cellspacing="0" cellpadding="3" summary="example table" width="550">
+   <TR style="background-color:#EAEAFF">
+    <TD style="font-weight:bold">The statistical significance of the difference between two bisulfite sequence groups at each CpG site is evaluated with <A HREF="http://en.wikipedia.org/wiki/Fisher%27s_exact_test" target="_blank">Fisher&#39;s exact test</A> that is non-parametric statistical significance test to determine if there are nonrandom associations between two categorical data.
+      Fisher&#39;s exact test can use the same way as the Chi-square test for independence and more exact for small number of methylated CpGs or unmethylated CpGs, that is usually detected in CpG methylation analysis.
+      Two-tailed p-value of Fisher&#39;s exact test is calculated from the 2 x 2 tables (exampled below) at each CpG site. This p-value is used to show the independence of CpG methylation between two groups at the CpG site.</TD>
+   </TR>
+   <TR style="background-color:#DDDDEE">
+    <TD>&nbsp;<IMG width="10" height="10" src="../images/icon034.gif" alt="list">
+        &nbsp;<A style="font-weight:bold">Example 2 x 2 table for CpG methylation status</A></TD>
+   </TR>
+   <TR style="background-color:#EEEEFA">
+    <TD><TABLE ALIGN="left" border="1" cellspacing="0" cellpadding="3" summary="example">
+     <TR>
+      <TH></TH>
+      <TH>methylated CpG</TH>
+      <TH>unmethylated CpG</TH>
+     </TR>
+     <TR>
+      <TH>group1</TH>
+      <TD align="right">a</TD>
+      <TD align="right">b</TD>
+     </TR>
+     <TR>
+      <TH>group2</TH>
+      <TD align="right">c</TD>
+      <TD align="right">d</TD>
+     </TR>
+    </TABLE></TD>
+   </TR>
+   <TR style="background-color:#EEEEFA">
+    <TD style="font-size:small">
+      a: number of methylated CpGs of group1 at the CpG site<BR>
+      b: number of unmethylated CpGs of group1 at the CpG site<BR>
+      c: number of methylated CpGs of group2 at the CpG site<BR>
+      d: number of unmethylated CpGs of group2 at the CpG site
+    </TD>
+   </TR>
+   <TR style="background-color:#DDDDEE">
+    <TD>In case of sample data show in table1, this data can be transformed as table2.
+    </TD>
+   </TR>
+   <TR style="background-color:#DDDDEE">
+    <TD><TABLE ALIGN="left" border="0" cellspacing="0" cellpadding="3" summary="example" style="font-size:small">
+     <TR>
+      <TD>Table1</TD>
+      <TD><IMG src="../images/spacer.gif" width="30" height="3" alt="space"></TD>
+     <TD>Table2</TD>
+     </TR>
+     <TR>
+      <TD><TABLE ALIGN="left" border="1" cellspacing="0" cellpadding="3" summary="example" style="font-size:small">
+       <TR>
+        <TH colspan="2">CpG position</TH>
+        <TH align="right">375</TH>
+       </TR>
+       <TR>
+        <TH rowspan="3">Me-CpG</TH>
+        <TD>group1</TD>
+        <TD>12/13<BR>92.3%</TD>
+       </TR>
+       <TR>
+        <TD>group2</TD>
+        <TD>4/10<BR>40.0%</TD>
+       </TR>
+       <TR>
+        <TD>total</TD>
+        <TD>16/23<BR>69.6%</TD>
+       </TR>
+      </TABLE></TD>
+      <TD></TD>
+      <TD valign="top"><TABLE ALIGN="left" border="1" cellspacing="0" cellpadding="3" summary="example">
+       <TR>
+        <TH></TH>
+        <TH>methylated CpG</TH>
+        <TH>unmethylated CpG</TH>
+        <TH>total</TH>
+       </TR>
+       <TR>
+        <TH>group1</TH>
+        <TD align="right">12</TD>
+        <TD align="right">1</TD>
+        <TD align="right">13</TD>
+       </TR>
+       <TR>
+        <TH>group2</TH>
+        <TD align="right">4</TD>
+        <TD align="right">6</TD>
+        <TD align="right">10</TD>
+       </TR>
+       <TR>
+        <TH>total</TH>
+        <TD align="right">16</TD>
+        <TD align="right">7</TD>
+        <TD align="right">23</TD>
+       </TR>
+      </TABLE></TD>
+     </TR>
+    </TABLE></TD>
+   </TR>
+   <TR style="background-color:#DDDDEE">
+    <TD>The probability <I>p</I> of this table can be determined by following formula:<BR>
+        <I>p</I> = <sub>a+b</sub>C<sub>a</sub> * <sub>c+d</sub>C<sub>c</sub> / <sub>a+b+c+d</sub>C<sub>a+c</sub><BR>
+        &nbsp;&nbsp;&nbsp;= <sub>13</sub>C<sub>12</sub> <sub>10</sub>C<sub>4</sub> / <sub>23</sub>C<sub>16</sub>
+                          = (13! 10! 16! 7!) / (12! 1! 4! 6! 23!) = 0.0111357212<BR>
+        where the symbol ! indicates the factorial operator.
+    </TD>
+   </TR>
+   <TR style="background-color:#EEEEFA">
+    <TD>When the marginal totals are fixed, there are 9 cases indicated below.
+    </TD>
+   </TR>
+   <TR style="background-color:#EEEEFA">
+    <TD><TABLE ALIGN="left" border="0" cellspacing="0" cellpadding="3" summary="example">
+     <TR>
+      <TD><TABLE ALIGN="left" border="1" cellspacing="0" cellpadding="3" summary="example" style="font-size:small">
+       <TR>
+        <TH>a</TH>
+        <TH>b</TH>
+        <TH>c</TH>
+        <TH>d</TH>
+        <TH nowrap>|ad - bc|</TH>
+        <TH>probability</TH>
+       </TR>
+       <TR>
+        <TD align="right">6</TD>
+        <TD align="right">7</TD>
+        <TD align="right">10</TD>
+        <TD align="right">0</TD>
+        <TD align="right">70</TD>
+        <TD align="right">0.0069995962</TD>
+       </TR>
+       <TR>
+        <TD align="right">7</TD>
+        <TD align="right">6</TD>
+        <TD align="right">9</TD>
+        <TD align="right">1</TD>
+        <TD align="right">47</TD>
+        <TD align="right">0.0699959618</TD>
+       </TR>
+       <TR>
+        <TD align="right">8</TD>
+        <TD align="right">5</TD>
+        <TD align="right">8</TD>
+        <TD align="right">2</TD>
+        <TD align="right">24</TD>
+        <TD align="right">0.2362363710</TD>
+       </TR>
+       <TR>
+        <TD align="right">9</TD>
+        <TD align="right">4</TD>
+        <TD align="right">7</TD>
+        <TD align="right">3</TD>
+        <TD align="right">1</TD>
+        <TD align="right">0.3499798089</TD>
+       </TR>
+       <TR>
+        <TD align="right">10</TD>
+        <TD align="right">3</TD>
+        <TD align="right">6</TD>
+        <TD align="right">4</TD>
+        <TD align="right">22</TD>
+        <TD align="right">0.2449858662</TD>
+       </TR>
+       <TR>
+        <TD align="right">11</TD>
+        <TD align="right">2</TD>
+        <TD align="right">5</TD>
+        <TD align="right">5</TD>
+        <TD align="right">45</TD>
+        <TD align="right">0.0801771926</TD>
+       </TR>
+       <TR style="color:magenta">
+        <TD align="right">12</TD>
+        <TD align="right">1</TD>
+        <TD align="right">4</TD>
+        <TD align="right">6</TD>
+        <TD align="right">68</TD>
+        <TD align="right">0.0111357212</TD>
+       </TR>
+       <TR>
+        <TD align="right">13</TD>
+        <TD align="right">0</TD>
+        <TD align="right">3</TD>
+        <TD align="right">7</TD>
+        <TD align="right">91</TD>
+        <TD align="right">0.0004894823</TD>
+       </TR>
+      </TABLE></TD>
+      <TD valign="top">To determine a two-tailed p-value of the significance, make a sum of probabilities of the case when the absolute value of "ad - bc" is not less than the absolute value of "ad - bc" of the sample.<BR>
+       In this data, the cases of a = 6, 12 and 13 are used. Then, the two-tailed p-value<BR>= 0.0069995962 + 0.0111357212 + 0.0004894823<BR>= 0.0186257997
+      </TD>
+     </TR>
+    </TABLE></TD>
+   </TR>
+  </TABLE>
+  <DIV STYLE="text-align:right">
+   <A HREF="../top/index.html" target="_top"><IMG border="0" src="../images/home.gif" alt="QUMA (QUantification tool for Methylation Analysis) top"></A>
+   <IMG src="../images/spacer.gif" alt="spacer" width="5" height="1">
+   <A HREF="javascript:window.close();void(0);"><IMG SRC="../images/iconClose.gif" ALT="close" border="0"></A></DIV>
+ </BODY>
+</HTML>

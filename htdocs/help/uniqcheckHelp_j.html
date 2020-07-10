@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!--
+//*****************************************************************************
+//*                                                                           *
+//* File name: uniqcheckHelp_j.html                                           *
+//* html for help of identical bisulfite sequence check Japanese version      *
+//* Author: Yuichi Kumaki (yuichi@kumaki.jp)                                  *
+//* Copyright (C) 2008-2019 Yuichi Kumaki                                     *
+//*                                                                           *
+//* 2012/05/22 First open source version                                      *
+//*                                                                           *
+//*****************************************************************************
+//*                                                                           *
+//* This program is free software: you can redistribute it and/or modify      *
+//* it under the terms of the GNU General Public License as published by      *
+//* the Free Software Foundation, either version 3 of the License, or         *
+//* (at your option) any later version.                                       *
+//*                                                                           *
+//* This program is distributed in the hope that it will be useful,           *
+//* but WITHOUT ANY WARRANTY; without even the implied warranty of            *
+//* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the             *
+//* GNU General Public License for more details.                              *
+//*                                                                           *
+//* You should have received a copy of the GNU General Public License         *
+//* along with this program.  If not, see http://www.gnu.org/licenses/.       *
+//*                                                                           *
+//*****************************************************************************
+-->
+<HTML lang="ja">
+ <HEAD>
+  <META HTTP-EQUIV="Content-Type" content="text/html; charset=UTF-8">
+  <META HTTP-EQUIV="Content-Script-Type" content="text/javascript">
+  <META HTTP-EQUIV="Content-Style-Type" content="text/css">
+  <LINK REV="MADE" HREF="mailto:yuichi@kumaki.jp">
+  <LINK REL="INDEX" HREF="../top/index.html">
+  <TITLE>バイサルファイト配列の同一性のチェック</TITLE>
+ </HEAD>
+ <BODY style="background-color:#FFFFFF">
+  <TABLE align="center" border="0" cellspacing="0" cellpadding="0" summary="title table">
+   <TR style="background-color:#3333CC">
+    <TD><IMG src="../images/spacer.gif" width="250" height="3" alt="space"></TD>
+   </TR>
+   <TR>
+    <TD align="center" style="color:#333399;font-size:large;font-weight:bold;font-style:italic">
+     バイサルファイト配列の同一性のチェック
+    </TD>
+   </TR>
+   <TR style="background-color:#3333CC">
+    <TD><IMG src="../images/spacer.gif" width="250" height="3" alt="space"></TD>
+   </TR>
+  </TABLE>
+  <DIV STYLE="text-align:right">
+   <A HREF="../top/index_j.html" target="_top"><IMG border="0" src="../images/home.gif" alt="QUMA (QUantification tool for Methylation Analysis) top"></A>
+   <IMG src="../images/spacer.gif" alt="spacer" width="5" height="1">
+   <A HREF="javascript:window.close();void(0);"><IMG SRC="../images/iconClose.gif" ALT="close" border="0"></A></DIV>
+  <TABLE ALIGN="center" border="0" cellspacing="0" cellpadding="5" summary="example table" width="550">
+   <TR style="background-color:#EAEAFF">
+    <TD style="font-weight:bold">ターゲット領域のバイサルファイト配列が同一の配列が複数存在する場合、一配列のみを使用し、他の同一配列を除外します。</TD>
+   </TR>
+   <TR style="background-color:#DDDDEE">
+    <TD>実験に用いたゲノムDNA量が微量の場合、PCRによる過剰な増幅が必要となり、その結果、同一のゲノムDNA分子由来のバイサルファイト配列のクローンを複数シークエンシングしてしまう場合があり、一部の配列による結果がover-representしてしまいます。</TD>
+   </TR>
+   <TR style="background-color:#EAEAFF">
+    <TD style="font-size:x-small">ただし、バイサルファイト変換の効率が高く、シークエンシングの質が高い場合は、同一のゲノムDNA分子由来でなくても、バイサルファイト配列が同一になる場合もあります（特に、個々の細胞・アレル間でのメチル化状態の差が少ない、高メチル化状態または低メチル化状態の場合）。全ての細胞・アレルが完全にメチル化されている場合、または、完全にメチル化されていない場合に、バイサルファイト変換が完全に行われて、さらに、シークエンシングエラーが全くなければ、当然、各バイサルファイト配列は同一になります。</TD>
+   </TR>
+   <TR style="background-color:#DDDDEE">
+    <TD>このオプションをチェックすると、ターゲット領域の配列が完全に一致するバイサルファイト配列が複数存在する場合に、一配列のみを使用するため、over-represetationを防げます。</TD>
+   </TR>
+   <TR style="background-color:#EAEAFF">
+    <TD>スタートのゲノムDNA量が微量の場合以外で、このオプションにより大きく結果が変わる場合は、実験がうまくいっていない可能性もあります。ですので、このオプションの使用には注意が必要です。</TD>
+   </TR>
+  </TABLE>
+  <DIV STYLE="text-align:right">
+   <A HREF="../top/index_j.html" target="_top"><IMG border="0" src="../images/home.gif" alt="QUMA (QUantification tool for Methylation Analysis) top"></A>
+   <IMG src="../images/spacer.gif" alt="spacer" width="5" height="1">
+   <A HREF="javascript:window.close();void(0);"><IMG SRC="../images/iconClose.gif" ALT="close" border="0"></A></DIV>
+ </BODY>
+</HTML>

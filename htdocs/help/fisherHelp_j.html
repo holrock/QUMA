@@ -1,0 +1,270 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!--
+//*****************************************************************************
+//*                                                                           *
+//* File name: fisherHelp_j.html                                              *
+//* html for help of fisher's exact test Japanese version                     *
+//* Author: Yuichi Kumaki (yuichi@kumaki.jp)                                  *
+//* Copyright (C) 2008-2019 Yuichi Kumaki                                     *
+//*                                                                           *
+//* 2008/04/25 First open source version                                      *
+//*                                                                           *
+//*****************************************************************************
+//*                                                                           *
+//* This program is free software: you can redistribute it and/or modify      *
+//* it under the terms of the GNU General Public License as published by      *
+//* the Free Software Foundation, either version 3 of the License, or         *
+//* (at your option) any later version.                                       *
+//*                                                                           *
+//* This program is distributed in the hope that it will be useful,           *
+//* but WITHOUT ANY WARRANTY; without even the implied warranty of            *
+//* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the             *
+//* GNU General Public License for more details.                              *
+//*                                                                           *
+//* You should have received a copy of the GNU General Public License         *
+//* along with this program.  If not, see http://www.gnu.org/licenses/.       *
+//*                                                                           *
+//*****************************************************************************
+-->
+<HTML lang="ja">
+ <HEAD>
+  <META HTTP-EQUIV="Content-Type" content="text/html; charset=UTF-8">
+  <META HTTP-EQUIV="Content-Script-Type" content="text/javascript">
+  <META HTTP-EQUIV="Content-Style-Type" content="text/css">
+  <LINK REV="MADE" HREF="mailto:yuichi@kumaki.jp">
+  <LINK REL="INDEX" HREF="../top/index.html">
+  <TITLE>フィッシャーの正確確率検定</TITLE>
+ </HEAD>
+ <BODY style="background-color:#FFFFFF">
+  <TABLE align="center" border="0" cellspacing="0" cellpadding="0" summary="title table">
+   <TR style="background-color:#3333CC">
+    <TD><IMG src="../images/spacer.gif" width="250" height="3" alt="space"></TD>
+   </TR>
+   <TR>
+    <TD align="center" style="color:#333399;font-size:large;font-weight:bold;font-style:italic">
+     フィッシャーの正確確率検定
+    </TD>
+   </TR>
+   <TR style="background-color:#3333CC">
+    <TD><IMG src="../images/spacer.gif" width="250" height="3" alt="space"></TD>
+   </TR>
+  </TABLE>
+  <DIV STYLE="text-align:right">
+   <A HREF="../top/index_j.html" target="_top"><IMG border="0" src="../images/home.gif" alt="QUMA (QUantification tool for Methylation Analysis) top"></A>
+   <IMG src="../images/spacer.gif" alt="spacer" width="5" height="1">
+   <A HREF="javascript:window.close();void(0);"><IMG SRC="../images/iconClose.gif" ALT="close" border="0"></A></DIV>
+  <TABLE ALIGN="center" border="0" cellspacing="0" cellpadding="3" summary="example table" width="550">
+   <TR style="background-color:#EAEAFF">
+    <TD><A style="font-weight:bold">各CpGサイトについて、二つのバイサルファイト配列のグループ間で、
+     メチル化割合に違いがあるかどうかの統計的有意性は、</A>
+     <A  style="font-weight:bold" HREF="http://ja.wikipedia.org/wiki/%E3%83%95%E3%82%A3%E3%83%83%E3%82%B7%E3%83%A3%E3%83%BC%E3%81%AE%E6%AD%A3%E7%A2%BA%E7%A2%BA%E7%8E%87%E6%A4%9C%E5%AE%9A" target="_blank">フィッシャーの正確確率検定</A>
+     <A style="font-weight:bold">を用いて求めています。フィッシャーの正確確率検定は、
+     ノンパラメトリックな統計手法で、2つのカテゴリーのデータ間にランダムではない相関があるかを統計的に検定するための方法です。
+     基本的には、フィッシャーの正確確率検定はカイ二乗検定と同様に独立性の検定に用いることができますが、
+     CpGのメチル化解析のように、少ない数のメチル化または未メチル化のデータに対しては、
+     フィッシャーの正確確率検定の方が正確です。</A>
+     データから2 x 2の分割表を作成した場合に、いずれかの升目の値が5以下ぐらいの小さい値の場合は、
+     カイ二乗検定は不適当です。カイ二乗検定では近似を用いていますが、フィッシャーの正確確率検定は
+     近似を用いていないため、フィッシャーの正確確率検定の方が（計算量は大きいですが）正確に検定する
+     ことが可能です。サンプル数が十分に多い場合には、フィッシャーの正確確率検定とカイ二乗検定の
+     検定結果は同じになります。
+     <A style="font-weight:bold">フィッシャーの正確確率検定における両側検定でのP値は、下記に示すような
+     各CpGサイトのメチル化状態についての2 x 2の分割表から計算します。このP値は2つのグループ間での
+     CpGのメチル化の状態が独立している（違いがある）かどうかを示すのに用います。</A></TD>
+   </TR>
+   <TR style="background-color:#DDDDEE">
+    <TD>&nbsp;<IMG width="10" height="10" src="../images/icon034.gif" alt="list">
+        &nbsp;<A style="font-weight:bold">CpGメチル化状態の2 x 2 の分割表の例</A></TD>
+   </TR>
+   <TR style="background-color:#EEEEFA">
+    <TD><TABLE ALIGN="left" border="1" cellspacing="0" cellpadding="3" summary="example">
+     <TR>
+      <TH></TH>
+      <TH>メチル化CpG</TH>
+      <TH>未メチル化CpG</TH>
+     </TR>
+     <TR>
+      <TH>グループ1</TH>
+      <TD align="right">a</TD>
+      <TD align="right">b</TD>
+     </TR>
+     <TR>
+      <TH>グループ2</TH>
+      <TD align="right">c</TD>
+      <TD align="right">d</TD>
+     </TR>
+    </TABLE></TD>
+   </TR>
+   <TR style="background-color:#EEEEFA">
+    <TD style="font-size:small">
+      a: あるCpGサイトにおけるグループ1でのメチル化CpGの数<BR>
+      b: あるCpGサイトにおけるグループ1での未メチル化CpGの数<BR>
+      c: あるCpGサイトにおけるグループ2でのメチル化CpGの数<BR>
+      d: あるCpGサイトにおけるグループ2での未メチル化CpGの数
+    </TD>
+   </TR>
+   <TR style="background-color:#DDDDEE">
+    <TD>実例として、表1のようなサンプルデータについて、まず、表2のように変換します。
+    </TD>
+   </TR>
+   <TR style="background-color:#DDDDEE">
+    <TD><TABLE ALIGN="left" border="0" cellspacing="0" cellpadding="0" summary="example" style="font-size:small">
+     <TR>
+      <TD>表1</TD>
+      <TD><IMG src="../images/spacer.gif" width="10" height="3" alt="space"></TD>
+      <TD>表2</TD>
+     </TR>
+     <TR>
+      <TD><TABLE ALIGN="left" border="1" cellspacing="0" cellpadding="0" summary="example1" style="font-size:small">
+       <TR>
+        <TH colspan="2">CpGサイトの位置</TH>
+        <TH align="right">375</TH>
+       </TR>
+       <TR>
+        <TH rowspan="3">メチル化CpG</TH>
+        <TD>グループ1</TD>
+        <TD>12/13<BR>92.3%</TD>
+       </TR>
+       <TR>
+        <TD>グループ2</TD>
+        <TD>4/10<BR>40.0%</TD>
+       </TR>
+       <TR>
+        <TD>計</TD>
+        <TD>16/23<BR>69.6%</TD>
+       </TR>
+      </TABLE></TD>
+      <TD></TD>
+      <TD valign="top"><TABLE ALIGN="left" border="1" cellspacing="0" cellpadding="0" summary="example2" style="font-size:small">
+       <TR>
+        <TH></TH>
+        <TH>メチル化CpG</TH>
+        <TH>未メチル化CpG</TH>
+        <TH>計</TH>
+       </TR>
+       <TR>
+        <TH>グループ1</TH>
+        <TD align="right">12</TD>
+        <TD align="right">1</TD>
+        <TD align="right">13</TD>
+       </TR>
+       <TR>
+        <TH>グループ2</TH>
+        <TD align="right">4</TD>
+        <TD align="right">6</TD>
+        <TD align="right">10</TD>
+       </TR>
+       <TR>
+        <TH>計</TH>
+        <TD align="right">16</TD>
+        <TD align="right">7</TD>
+        <TD align="right">23</TD>
+       </TR>
+      </TABLE></TD>
+     </TR>
+    </TABLE></TD>
+   </TR>
+   <TR style="background-color:#DDDDEE">
+    <TD>この事象の確率<I>p</I> は以下のように求められます：<BR>
+        <I>p</I> = <sub>a+b</sub>C<sub>a</sub> * <sub>c+d</sub>C<sub>c</sub> / <sub>a+b+c+d</sub>C<sub>a+c</sub><BR>
+        &nbsp;&nbsp;&nbsp;= <sub>13</sub>C<sub>12</sub> <sub>10</sub>C<sub>4</sub> / <sub>23</sub>C<sub>16</sub>
+                          = (13! 10! 16! 7!) / (12! 1! 4! 6! 23!) = 0.0111357212<BR>
+        ここで、記号 ! は階乗を意味します。
+    </TD>
+   </TR>
+   <TR style="background-color:#EEEEFA">
+    <TD>周辺度数（2 x 2分割表の外側の、13, 10 ,16, 7）を固定したとき、全部で以下の9種類の組み合わせが考えられます。
+    </TD>
+   </TR>
+   <TR style="background-color:#EEEEFA">
+    <TD><TABLE ALIGN="left" border="0" cellspacing="0" cellpadding="3" summary="example">
+     <TR>
+      <TD valign="top"><TABLE ALIGN="left" border="1" cellspacing="0" cellpadding="3" summary="example" style="font-size:small">
+       <TR>
+        <TH>a</TH>
+        <TH>b</TH>
+        <TH>c</TH>
+        <TH>d</TH>
+        <TH nowrap>|ad - bc|</TH>
+        <TH>確率<I>p</I></TH>
+       </TR>
+       <TR>
+        <TD align="right">6</TD>
+        <TD align="right">7</TD>
+        <TD align="right">10</TD>
+        <TD align="right">0</TD>
+        <TD align="right">70</TD>
+        <TD align="right">0.0069995962</TD>
+       </TR>
+       <TR>
+        <TD align="right">7</TD>
+        <TD align="right">6</TD>
+        <TD align="right">9</TD>
+        <TD align="right">1</TD>
+        <TD align="right">47</TD>
+        <TD align="right">0.0699959618</TD>
+       </TR>
+       <TR>
+        <TD align="right">8</TD>
+        <TD align="right">5</TD>
+        <TD align="right">8</TD>
+        <TD align="right">2</TD>
+        <TD align="right">24</TD>
+        <TD align="right">0.2362363710</TD>
+       </TR>
+       <TR>
+        <TD align="right">9</TD>
+        <TD align="right">4</TD>
+        <TD align="right">7</TD>
+        <TD align="right">3</TD>
+        <TD align="right">1</TD>
+        <TD align="right">0.3499798089</TD>
+       </TR>
+       <TR>
+        <TD align="right">10</TD>
+        <TD align="right">3</TD>
+        <TD align="right">6</TD>
+        <TD align="right">4</TD>
+        <TD align="right">22</TD>
+        <TD align="right">0.2449858662</TD>
+       </TR>
+       <TR>
+        <TD align="right">11</TD>
+        <TD align="right">2</TD>
+        <TD align="right">5</TD>
+        <TD align="right">5</TD>
+        <TD align="right">45</TD>
+        <TD align="right">0.0801771926</TD>
+       </TR>
+       <TR style="color:magenta">
+        <TD align="right">12</TD>
+        <TD align="right">1</TD>
+        <TD align="right">4</TD>
+        <TD align="right">6</TD>
+        <TD align="right">68</TD>
+        <TD align="right">0.0111357212</TD>
+       </TR>
+       <TR>
+        <TD align="right">13</TD>
+        <TD align="right">0</TD>
+        <TD align="right">3</TD>
+        <TD align="right">7</TD>
+        <TD align="right">91</TD>
+        <TD align="right">0.0004894823</TD>
+       </TR>
+      </TABLE></TD>
+      <TD valign="top">これらの組み合わせのうち、"ad - bc"の絶対値がサンプルの事象での値(68)以下となる組み合わせについて、
+                       その確率<I>p</I>を合計したものが両側検定でのP値になります。
+                       この例では、a = 6, 12, 13の場合が該当し、両側検定でのP値は以下のように求まります。<BR>
+                       P-value = 0.0069995962 + 0.0111357212 + 0.0004894823 = 0.0186257997<BR>
+      </TD>
+     </TR>
+    </TABLE></TD>
+   </TR>
+  </TABLE>
+  <DIV STYLE="text-align:right">
+   <A HREF="../top/index_j.html" target="_top"><IMG border="0" src="../images/home.gif" alt="QUMA (QUantification tool for Methylation Analysis) top"></A>
+   <IMG src="../images/spacer.gif" alt="spacer" width="5" height="1">
+   <A HREF="javascript:window.close();void(0);"><IMG SRC="../images/iconClose.gif" ALT="close" border="0"></A></DIV>
+ </BODY>
+</HTML>

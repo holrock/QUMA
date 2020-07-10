@@ -1,0 +1,92 @@
+LOCUS       NT_111909                453 bp    DNA     linear   CON 21-JUN-2007
+DEFINITION  Mus musculus chromosome X genomic contig, strain C57BL/6J.
+ACCESSION   NT_111909 REGION: complement(2446765..2447217)
+VERSION     NT_111909.2  GI:83000855
+KEYWORDS    .
+SOURCE      Mus musculus (house mouse)
+  ORGANISM  Mus musculus
+            Eukaryota; Metazoa; Chordata; Craniata; Vertebrata; Euteleostomi;
+            Mammalia; Eutheria; Euarchontoglires; Glires; Rodentia;
+            Sciurognathi; Muroidea; Muridae; Murinae; Mus.
+REFERENCE   1  (bases 1 to 453)
+  AUTHORS   Waterston,R.H., Lindblad-Toh,K., Birney,E., Rogers,J., Abril,J.F.,
+            Agarwal,P., Agarwala,R., Ainscough,R., Alexandersson,M., An,P.,
+            Antonarakis,S.E., Attwood,J., Baertsch,R., Bailey,J., Barlow,K.,
+            Beck,S., Berry,E., Birren,B., Bloom,T., Bork,P., Botcherby,M.,
+            Bray,N., Brent,M.R., Brown,D.G., Brown,S.D., Bult,C., Burton,J.,
+            Butler,J., Campbell,R.D., Carninci,P., Cawley,S., Chiaromonte,F.,
+            Chinwalla,A.T., Church,D.M., Clamp,M., Clee,C., Collins,F.S.,
+            Cook,L.L., Copley,R.R., Coulson,A., Couronne,O., Cuff,J.,
+            Curwen,V., Cutts,T., Daly,M., David,R., Davies,J., Delehaunty,K.D.,
+            Deri,J., Dermitzakis,E.T., Dewey,C., Dickens,N.J., Diekhans,M.,
+            Dodge,S., Dubchak,I., Dunn,D.M., Eddy,S.R., Elnitski,L., Emes,R.D.,
+            Eswara,P., Eyras,E., Felsenfeld,A., Fewell,G.A., Flicek,P.,
+            Foley,K., Frankel,W.N., Fulton,L.A., Fulton,R.S., Furey,T.S.,
+            Gage,D., Gibbs,R.A., Glusman,G., Gnerre,S., Goldman,N.,
+            Goodstadt,L., Grafham,D., Graves,T.A., Green,E.D., Gregory,S.,
+            Guigo,R., Guyer,M., Hardison,R.C., Haussler,D., Hayashizaki,Y.,
+            Hillier,L.W., Hinrichs,A., Hlavina,W., Holzer,T., Hsu,F., Hua,A.,
+            Hubbard,T., Hunt,A., Jackson,I., Jaffe,D.B., Johnson,L.S.,
+            Jones,M., Jones,T.A., Joy,A., Kamal,M., Karlsson,E.K.,
+            Karolchik,D., Kasprzyk,A., Kawai,J., Keibler,E., Kells,C.,
+            Kent,W.J., Kirby,A., Kolbe,D.L., Korf,I., Kucherlapati,R.S.,
+            Kulbokas,E.J., Kulp,D., Landers,T., Leger,J.P., Leonard,S.,
+            Letunic,I., Levine,R., Li,J., Li,M., Lloyd,C., Lucas,S., Ma,B.,
+            Maglott,D.R., Mardis,E.R., Matthews,L., Mauceli,E., Mayer,J.H.,
+            McCarthy,M., McCombie,W.R., McLaren,S., McLay,K., McPherson,J.D.,
+            Meldrim,J., Meredith,B., Mesirov,J.P., Miller,W., Miner,T.L.,
+            Mongin,E., Montgomery,K.T., Morgan,M., Mott,R., Mullikin,J.C.,
+            Muzny,D.M., Nash,W.E., Nelson,J.O., Nhan,M.N., Nicol,R., Ning,Z.,
+            Nusbaum,C., O'Connor,M.J., Okazaki,Y., Oliver,K., Overton-Larty,E.,
+            Pachter,L., Parra,G., Pepin,K.H., Peterson,J., Pevzner,P.,
+            Plumb,R., Pohl,C.S., Poliakov,A., Ponce,T.C., Ponting,C.P.,
+            Potter,S., Quail,M., Reymond,A., Roe,B.A., Roskin,K.M., Rubin,E.M.,
+            Rust,A.G., Santos,R., Sapojnikov,V., Schultz,B., Schultz,J.,
+            Schwartz,M.S., Schwartz,S., Scott,C., Seaman,S., Searle,S.,
+            Sharpe,T., Sheridan,A., Shownkeen,R., Sims,S., Singer,J.B.,
+            Slater,G., Smit,A., Smith,D.R., Spencer,B., Stabenau,A.,
+            Stange-Thomann,N., Sugnet,C., Suyama,M., Tesler,G., Thompson,J.,
+            Torrents,D., Trevaskis,E., Tromp,J., Ucla,C., Ureta-Vidal,A.,
+            Vinson,J.P., Von Niederhausern,A.C., Wade,C.M., Wall,M.,
+            Weber,R.J., Weiss,R.B., Wendl,M.C., West,A.P., Wetterstrand,K.,
+            Wheeler,R., Whelan,S., Wierzbowski,J., Willey,D., Williams,S.,
+            Wilson,R.K., Winter,E., Worley,K.C., Wyman,D., Yang,S., Yang,S.P.,
+            Zdobnov,E.M., Zody,M.C. and Lander,E.S.
+  TITLE     Initial sequencing and comparative analysis of the mouse genome
+  JOURNAL   Nature 420 (6915), 520-562 (2002)
+   PUBMED   12466850
+REFERENCE   2  (sites)
+  AUTHORS   Lowe,T.M. and Eddy,S.R.
+  TITLE     tRNAscan-SE: a program for improved detection of transfer RNA genes
+            in genomic sequence
+  JOURNAL   Nucleic Acids Res. 25 (5), 955-964 (1997)
+   PUBMED   9023104
+  REMARK    This is the methods paper for tRNAscan-SE.
+COMMENT     GENOME ANNOTATION REFSEQ:  Features on this sequence have been
+            produced for build 37 version 1 of the NCBI's genome annotation
+            [see documentation].
+            On or before Jan 11, 2006 this sequence version replaced
+            gi:63740850, gi:63741204.
+            The DNA sequence is part of the largely finished reference sequence
+            (C57BL/6J) that contains small amounts of WGS and HTGS Draft
+            sequence. This assembly was performed by NCBI in consultation with
+            the Mouse Genome Sequencing Consortium.
+            Name: MmX_110779_37.
+FEATURES             Location/Qualifiers
+     source          1..453
+                     /organism="Mus musculus"
+                     /mol_type="genomic DNA"
+                     /strain="C57BL/6J"
+                     /db_xref="taxon:10090"
+                     /chromosome="X"
+ORIGIN      
+        1 caagagagct gagcttggag aaactcgatc ttccagttct acgtagctcg aggcgggaag
+       61 gcatcacacc ataaatgcgc atgcacacgc gcaccttgaa ggctgggctt ttctcagcga
+      121 gctcagaggc tctcgtgaga tttcatcctt agtctcgctc ttctgcccct tcccccacaa
+      181 gacacaggtt ttccctccga aaaaccacac ccggaagcgt gtcactcaat ccccacaaca
+      241 gcgtgcgtgc cctttgcaat ctgcgcagtc cccaacatca cacatatgca cattctagcc
+      301 ctccaatctc tagggttgtg tgaatgtgcc tccccaccga tccgatccct aagaacagaa
+      361 gacctctaga caatcgaaac tgcagcatca aaagcatcac agcacataca atcacaaact
+      421 ttatgtgtct cctagcctgt ccaatccccc act
+//
+

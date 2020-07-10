@@ -1,0 +1,205 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!--
+//*****************************************************************************
+//*                                                                           *
+//* File name: 20090108_update_detail_j.html                                  *
+//* html for update at 20090108 (Japanese version)                            *
+//* Author: Yuichi Kumaki (yuichi@kumaki.jp)                                  *
+//* Copyright (C) 2008-2019 Yuichi Kumaki                                     *
+//*                                                                           *
+//* 2009/01/08 First version                                                  *
+//*                                                                           *
+//*****************************************************************************
+//*                                                                           *
+//* This program is free software: you can redistribute it and/or modify      *
+//* it under the terms of the GNU General Public License as published by      *
+//* the Free Software Foundation, either version 3 of the License, or         *
+//* (at your option) any later version.                                       *
+//*                                                                           *
+//* This program is distributed in the hope that it will be useful,           *
+//* but WITHOUT ANY WARRANTY; without even the implied warranty of            *
+//* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the             *
+//* GNU General Public License for more details.                              *
+//*                                                                           *
+//* You should have received a copy of the GNU General Public License         *
+//* along with this program.  If not, see http://www.gnu.org/licenses/.       *
+//*                                                                           *
+//*****************************************************************************
+-->
+<HTML lang="ja">
+
+ <HEAD>
+  <META HTTP-EQUIV="Content-Type" content="text/html; charset=UTF-8">
+  <META HTTP-EQUIV="Content-Style-Type" content="text/css">
+  <LINK REV="MADE" HREF="mailto:yuichi@kumaki.jp">
+  <LINK REL="INDEX" HREF="index.html">
+  <TITLE>２００９年１月８日更新</TITLE>
+ </HEAD>
+ <BODY style="background-color:#FFFFFF">
+  <DIV ALIGN="center">
+   <!-- Whats New start -->
+   <TABLE ALIGN="center" border="0" cellspacing="0" cellpadding="0" summary="Contact information" width="800" style="background-color:#E1EAEE">
+    <TR style="background-color:#7777DD">
+     <TD align="center"><IMG src="../images/spacer.gif" width="800" height="3" alt="space"></TD>
+    </TR>
+    <TR>
+     <TD style="color:#4444AA;font-size:large;font-weight:bold;font-style:italic">
+      &nbsp;&nbsp;&nbsp;&nbsp;２００９年１月８日の更新の詳細
+     </TD>
+    </TR>
+    <TR style="background-color:#7777DD">
+     <TD><IMG src="../images/spacer.gif" width="800" height="3" alt="space"></TD>
+    </TR>
+    <TR>
+     <TD><IMG src="../images/spacer.gif" width="800" height="5" alt="space"></TD>
+    </TR>
+    <TR>
+     <TD><TABLE border="0" cellspacing="0" cellpadding="3" summary="detail information">
+      <TR>
+       <TD valign="top">&nbsp;<IMG src="/images/icon034.gif" alt="list" width="10" height="10"></TD>
+       <TD valign="top">解析のセーブ&amp;リストアができるようになりました。並べ替えやcutoffの状態を含めて解析をファイルに保存できます。
+        また、データを他の人に送るのにも使えます。</TD>
+      </TR>
+      <TR>
+       <TD></TD>
+       <TD style="font-size:small">例えば、以下の場合に便利です。<BR>
+        ・とりあえず結果を見たけれど、図を作ったりの詳細な解析は論文を書くときに行う。<BR>
+        ・論文に用いる図を作った時の解析内容を、そのままの形で残しておきたい。<BR>
+        ・データをボスや共同研究者に見せる／渡す場合など。<BR>
+        今後、QUMAに新しい機能を追加する場合でも、今の時点の解析データが開けるように、互換性は保つ予定です。
+       </TD>
+      </TR>
+      <TR>
+       <TD colspan="2" align="center"><IMG src="/images/save_res2.png" alt="SaveAndRestore"></TD>
+      </TR>
+      <TR>
+       <TD colspan="2"><IMG src="../images/spacer.gif" width="5" height="5" alt="space"></TD>
+      </TR>
+      <TR>
+       <TD valign="top">&nbsp;<IMG src="/images/icon034.gif" alt="list" width="10" height="10"></TD>
+       <TD>Multiple-alignment形式での表示とファイルのダウンロードができるようになりました。臨床データやimprinting geneの解析でアレルの違いをみる場合に便利です。
+           また、multi-FASTA形式でダウンロードしたファイルは<A HREF="http://www.gmi.oeaw.ac.at/CyMATE" target="_blank">CyMATE</A>など
+           他のプログラムのinputとして利用可能です（植物などのnon-CpGメチル化を調べる場合には便利かも）。</TD>
+      </TR>
+      <TR>
+       <TD></TD>
+       <TD style="font-size:x-small">細かい話ですが、一般的なmultiple-alignment（ClustalWなどを用いた場合referenceとなるgenomic
+        sequenceと各bisulfite sequenceが等価に扱わる）ではなく、
+        pairwise-alignmentをベースにしてmultiple-alignmentを作成しています。そのため、全部の配列間のmultiple-alignmentではなく、
+        genomic sequenceに対してbisulfite sequenceの位置を調整したmultiple-alignmentになっています。bisulfite sequenceの解析の場合は、
+        この方法の方が正しいです（と思います）。
+       </TD>
+      </TR>
+      <TR>
+       <TD colspan="2" align="center"><IMG src="/images/multiAli.png" alt="MultipleAlignment"></TD>
+      </TR>
+      <TR>
+       <TD colspan="2"><IMG src="../images/spacer.gif" width="5" height="5" alt="space"></TD>
+      </TR>
+      <TR>
+       <TD valign="top">&nbsp;<IMG src="/images/icon034.gif" alt="list" width="10" height="10"></TD>
+       <TD>CpGのメチル化率を円グラフ形式で表示できるようになりました。</TD>
+      </TR>
+      <TR>
+       <TD></TD>
+       <TD style="font-size:small">アレル毎のメチル化のパータンではなくて、多くの種類のサンプルのデータを比較して表示する場合は、
+        この表示方法が見やすいかもしれません。SVG形式でダウンロードして、Illustrator上で並べたりいじったりするといいと思います。</TD>
+      </TR>
+      <TR>
+       <TD colspan="2" align="center"><IMG src="/images/circleFig1.png" alt="MultipleAlignment"></TD>
+      </TR>
+      <TR>
+       <TD colspan="2" align="center"><IMG src="/images/circleFig2.png" alt="MultipleAlignment"></TD>
+      </TR>
+      <TR>
+       <TD colspan="2"><IMG src="../images/spacer.gif" width="5" height="5" alt="space"></TD>
+      </TR>
+      <TR>
+       <TD valign="top">&nbsp;<IMG src="/images/icon034.gif" alt="list" width="10" height="10"></TD>
+       <TD>CpGメチル化パターンの図でCpGの番号を表示できるようになりました。</TD>
+      </TR>
+      <TR>
+       <TD></TD>
+       <TD style="font-size:small">CpGのポジション（塩基番号）との同時表示もできます。データの確認をする場合には
+        この表示方法が見やすいかもしれません。</TD>
+      </TR>
+      <TR>
+       <TD colspan="2" align="center"><IMG src="/images/CpGNo.png" alt="MultipleAlignment"></TD>
+      </TR>
+      <TR>
+       <TD colspan="2"><IMG src="../images/spacer.gif" width="5" height="5" alt="space"></TD>
+      </TR>
+      <TR>
+       <TD valign="top">&nbsp;<IMG src="/images/icon034.gif" alt="list" width="10" height="10"></TD>
+       <TD>メチル化率の<A HREF="http://ja.wikipedia.org/wiki/%E6%A8%99%E6%BA%96%E5%81%8F%E5%B7%AE" target="_blank">標準偏差（S.D）</A>と
+          <A HREF="http://ja.wikipedia.org/wiki/%E6%A8%99%E6%BA%96%E8%AA%A4%E5%B7%AE" target="_blank">標準誤差（S.E.）</A>が表示できるようになりました。
+          各バイサルファイト配列間での値と各CpG site間の値の両方を表示しています。</TD>
+      </TR>
+      <TR>
+       <TD colspan="2" align="center"><IMG src="/images/sd.png" alt="MultipleAlignment"></TD>
+      </TR>
+      <TR>
+       <TD colspan="2"><IMG src="../images/spacer.gif" width="5" height="5" alt="space"></TD>
+      </TR>
+      <TR>
+       <TD></TD>
+       <TD style="font-size:small">今回の更新内容は、主にBMB2008での発表の際に寄せられたご要望を反映いたしました。他にもご要望等がありましたら
+          <A href="mailto:quma@cdb.riken.jp">quma@cdb.riken.jp</A>までお寄せ下さい。</TD>
+      </TR>
+     </TABLE></TD>
+    </TR>
+   </TABLE>
+   <!-- Whats New end -->
+   <!-- Foot Start -->
+   <HR width="800">
+   <TABLE style="margin-left:auto;margin-right:auto" summary="foot"><TBODY>
+    <TR>
+     <TD align="center"  rowspan="2">
+      <A target="_blank" href="http://www.riken.jp/index_j.html"><IMG src="../images/riken_s2.png"
+       width="36" height="61" style="border-width:0;vertical-align:middle" alt="RIKEN"></A>
+     </TD>
+     <TD align="center" rowspan="2">
+      <IMG src="../images/spacer.gif" alt="spacer" width="1" height="10">
+     </TD>
+     <TD rowspan="2">
+      <HR style="width:1px;height:30px">
+     </TD>
+     <TD align="center" rowspan="2">
+      <IMG src="../images/spacer.gif" alt="spacer" width="1" height="10">
+     </TD>
+     <TD>
+      <TABLE border="0" cellspacing="0" cellpadding="0" summary="contact"><TBODY>
+       <TR>
+        <TD valign="middle" style="font-size:small">
+         ご意見、ご感想、不具合情報等ありましたら、ぜひ&nbsp;
+        </TD>
+        <TD valign="middle" style="font-size:small;color:#006633">
+         <ADDRESS>
+          <A href="mailto:quma@cdb.riken.jp">quma@cdb.riken.jp</A>
+         </ADDRESS>
+        </TD>
+        <TD valign="middle" style="font-size:small">
+         &nbsp;&nbsp;までお知らせ下さい。
+        </TD>
+       </TR>
+       <TR>
+        <TD colspan="3" style="font-size:small">機能についてのリクエストや使用方法がわからないといった場合でもお気軽にお問い合わせ下さい。</TD>
+       </TR>
+      </TBODY></TABLE>
+     </TD>
+    </TR>
+    <TR>
+     <TD valign="middle" style="font-size:small">
+      Copyright&#169;&nbsp;2008-2019 <A target="_blank" href="http://www.riken.jp/index_j.html">RIKEN</A> All rights reserved.
+     </TD>
+    </TR>
+   </TBODY></TABLE>
+   <TABLE ALIGN="center" border="0" cellspacing="0" cellpadding="0" summary="Last updated" width="800">
+    <TR>
+     <TD width="90" align="right"><A HREF="index_j.html" target="_top"><IMG border="0" src="../images/home.gif" alt="QUMA (QUantification tool for Methylation Analysis) top"></A></TD>
+    </TR>
+   </TABLE>
+<!-- Foot End -->
+  </DIV>
+ </BODY>
+</HTML>
