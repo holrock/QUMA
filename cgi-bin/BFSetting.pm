@@ -33,10 +33,10 @@ use Exporter;
 ############ Please change these values for your environment! ##################
                                                                                #
 ###  full path of this directory                                               #
-use constant CGIDIR   => '/var/www/cgi-bin';                                   #
+use constant CGIDIR   => '/usr/local/apache2/cgi-bin';                         #
                                                                                #
 ###  full path of the needle program                                           #
-use constant NEEDLE   => '/usr/local/bin/needle';                              #
+use constant NEEDLE   => '/usr/bin/needle';                                    #
                                                                                #
 ###  full path of the true type font                                           #
 use constant FONTPATH => '/usr/X11R6/lib/X11/fonts/TTF/luximr.ttf';            #

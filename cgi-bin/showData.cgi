@@ -29,6 +29,8 @@ use 5.6.0;
 use strict;
 use warnings;
 
+use FindBin;
+use lib $FindBin::Bin;
 use CGI::Lite;
 
 use BFSetting;
